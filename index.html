@@ -1,209 +1,226 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Merrygood</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Courier', monospace; /* 기본 폰트는 Courier 유지 */
-        background-color: #000;
-        color: #fff;
-        height: 100%;
-        font-size: 14px;
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merrygood</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Courier', monospace; /* 타이틀 기본 폰트 */
+      background-color: #000;
+      color: #fff;
+      height: 100%;
+      font-size: 14px;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-      header {
-        padding: 40px 0 10px;
-        text-align: center;
-      }
+    header {
+      padding: 40px 0 10px;
+      text-align: center;
+    }
 
-      h1 {
-        font-family: 'Courier', monospace; /* 타이틀은 원래 폰트 유지 */
-        font-size: 2.5em;
-        margin: 0;
-      }
+    h1 {
+      font-family: 'Courier', monospace; /* 타이틀은 기존 폰트 유지 */
+      font-size: 2.5em;
+      margin: 0;
+    }
 
-      /* 상단 애니메이션 구역 */
-      .animation-wrapper {
-        position: relative;
-        height: 250px;
-        overflow: hidden;
-      }
+    /* 상단 애니메이션 영역 */
+    .animation-wrapper {
+      position: relative;
+      height: 250px;
+      overflow: visible;
+    }
 
-      .car {
-        font-size: 16px;
-        color: white;
-        position: absolute;
-        top: 120px;
+    .car {
+      font-size: 16px;
+      color: white;
+      position: absolute;
+      top: 120px;
+      left: -200px; /* 시작 위치 */
+      animation: moveCar 8s ease-out forwards;
+      white-space: pre;
+    }
+
+    @keyframes moveCar {
+      0% {
+        left: -200px;
+      }
+      50% {
         left: 25%;
-        animation: moveCar 8s ease-out forwards;
       }
-
-      @keyframes moveCar {
-        0% {
-          left: -200px;
-        }
-        100% {
-          left: 25%;
-        }
+      100% {
+        left: 25%;
       }
+    }
 
-      .drone {
-        font-size: 16px;
-        color: white;
-        position: absolute;
+    .drone {
+      font-size: 16px;
+      color: white;
+      position: absolute;
+      top: -100px;
+      right: -100px; /* 시작 위치 */
+      animation: moveDrone 6s ease-out forwards;
+      white-space: pre;
+    }
+
+    @keyframes moveDrone {
+      0% {
+        top: -100px;
+        right: -100px;
+      }
+      100% {
         top: 20px;
         right: 25%;
+      }
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: 'Fira Code', monospace; /* 연혁만 개발자스러운 폰트 */
+      white-space: pre-line;
+      max-width: 90%;
+      margin: 0 auto;
+      font-size: 1em;
+      line-height: 1.4;
+      min-height: 100px; /* 타이핑 위치 확보 */
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+
+    /* 반응형 */
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+      .car {
+        font-size: 14px;
+        top: 120px;
+        left: -150px;
+        animation-duration: 7s;
+      }
+      .drone {
+        font-size: 14px;
+        top: -80px;
+        animation-duration: 5.5s;
+      }
+      main {
+        font-size: 0.95em;
+      }
+    }
+
+    @media (max-width: 767px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      .animation-wrapper {
+        height: 250px;
+      }
+      .car {
+        font-size: 14px;
+        top: 120px;
+        left: -150px;
+        animation: moveCar 8s ease-out forwards;
+      }
+      .drone {
+        font-size: 14px;
+        top: 20px;
+        right: -100px;
         animation: moveDrone 6s ease-out forwards;
       }
-
-      @keyframes moveDrone {
-        0% {
-          top: -100px;
-          right: -100px;
-        }
-        100% {
-          top: 20px;
-          right: 25%;
-        }
-      }
-
       main {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 20px;
-        box-sizing: border-box;
-        font-family: 'Fira Code', monospace; /* 연혁 폰트만 Fira Code */
-      }
-
-      #timeline {
-        font-size: 1em;
-        text-align: left;
-        white-space: pre-line;
-        max-width: 90%;
-        line-height: 1.4;
-      }
-
-      footer {
-        padding: 20px;
-        text-align: center;
+        padding-top: 20px;
         font-size: 0.9em;
       }
+    }
 
-      /* 반응형 조정 */
-      @media (max-width: 767px) {
-        .car, .drone {
-          display: block;
-          position: static;
-          text-align: center;
-          margin: 10px auto;
-          animation: none;
-        }
-
-        .animation-wrapper {
-          height: auto;
-        }
-
-        h1 {
-          font-size: 1.8em;
-        }
-
-        main {
-          padding-top: 10px;
-        }
-
-        #timeline {
-          font-size: 0.95em;
-        }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
       }
-
-      @media (max-width: 480px) {
-        h1 {
-          font-size: 1.5em;
-        }
-
-        #timeline {
-          font-size: 0.9em;
-        }
+      main {
+        font-size: 0.85em;
       }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Merrygood</h1>
-    </header>
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Merrygood</h1>
+  </header>
 
-    <!-- 상단 애니메이션 (전기차 & 드론) -->
-    <div class="animation-wrapper">
-      <div class="car">
-        <pre>
-      _________
-     /|_||_\`.__
-    (   _    _ _\
-    =`-(_)--(_)-'
-        </pre>
-      </div>
-      <div class="drone">
-        <pre>
-     __|__
-----(_)----
-        </pre>
-      </div>
+  <div class="animation-wrapper">
+    <div class="car">
+<pre>  _________
+ /|_||_\`.__
+(   _    _ _\
+=`-(_)--(_)-'</pre>
     </div>
+    <div class="drone">
+<pre> __|__
+----(_)----</pre>
+    </div>
+  </div>
 
-    <!-- 연혁 타이핑 영역 -->
-    <main>
-      <div id="timeline"></div>
-    </main>
+  <main>
+    <div id="timeline"></div>
+  </main>
 
-    <footer>
-      <p>© 2025 Merrygood Co., Ltd. All rights reserved.</p>
-    </footer>
+  <footer>
+    <p>© 2025 Merrygood Co., Ltd. All rights reserved.</p>
+  </footer>
 
-    <!-- 타이핑 애니메이션 -->
-    <script>
-      const timelineElement = document.getElementById("timeline");
+  <script>
+    const timelineElement = document.getElementById("timeline");
 
-      const timelineTexts = [
-        "2024.09 법인 설립",
-        "2025.03 프랑스 Tranoi 참관",
-        "2025.05 첫 제품 출시",
-        "2025.07 누적 판매 1,000건 달성",
-        "2025.08 유럽 진출 준비 중..."
-      ];
+    const timelineTexts = [
+      "2024.09 법인 설립",
+      "2025.03 프랑스 Tranoi 참관",
+      "2025.05 첫 제품 출시",
+      "2025.07 누적 판매 1,000건 달성",
+      "2025.08 유럽 진출 준비 중..."
+    ];
 
-      let lineIndex = 0;
-      let charIndex = 0;
+    let lineIndex = 0;
+    let charIndex = 0;
 
-      function typeLine() {
-        if (lineIndex < timelineTexts.length) {
-          const currentLine = timelineTexts[lineIndex];
-          if (charIndex < currentLine.length) {
-            timelineElement.innerHTML += currentLine.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeLine, 80);
-          } else {
-            timelineElement.innerHTML += "\n";
-            charIndex = 0;
-            lineIndex++;
-            setTimeout(typeLine, 500);
-          }
+    // 타이핑 애니메이션 시작 시점 (자동차 8초, 드론 6초 → 최대 8초 후 시작)
+    const typingStartDelay = 8000;
+
+    function typeLine() {
+      if (lineIndex < timelineTexts.length) {
+        const currentLine = timelineTexts[lineIndex];
+        if (charIndex < currentLine.length) {
+          timelineElement.textContent += currentLine.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeLine, 80);
+        } else {
+          timelineElement.textContent += "\n";
+          charIndex = 0;
+          lineIndex++;
+          setTimeout(typeLine, 500);
         }
       }
+    }
 
-      window.addEventListener("load", () => {
-        setTimeout(typeLine, 8000);
-      });
-    </script>
-  </body>
+    window.addEventListener("load", () => {
+      setTimeout(typeLine, typingStartDelay);
+    });
+  </script>
+</body>
 </html>
