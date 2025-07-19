@@ -10,7 +10,7 @@
       html, body {
         margin: 0;
         padding: 0;
-        font-family: 'Fira Code', monospace;
+        font-family: 'Courier', monospace; /* 기본 폰트는 Courier 유지 */
         background-color: #000;
         color: #fff;
         height: 100%;
@@ -26,6 +26,7 @@
       }
 
       h1 {
+        font-family: 'Courier', monospace; /* 타이틀은 원래 폰트 유지 */
         font-size: 2.5em;
         margin: 0;
       }
@@ -82,6 +83,7 @@
         align-items: flex-start;
         padding: 20px;
         box-sizing: border-box;
+        font-family: 'Fira Code', monospace; /* 연혁 폰트만 Fira Code */
       }
 
       #timeline {
@@ -89,6 +91,7 @@
         text-align: left;
         white-space: pre-line;
         max-width: 90%;
+        line-height: 1.4;
       }
 
       footer {
@@ -100,7 +103,15 @@
       /* 반응형 조정 */
       @media (max-width: 767px) {
         .car, .drone {
-          display: none; /* 모바일에서 숨김 처리 */
+          display: block;
+          position: static;
+          text-align: center;
+          margin: 10px auto;
+          animation: none;
+        }
+
+        .animation-wrapper {
+          height: auto;
         }
 
         h1 {
@@ -190,7 +201,6 @@
         }
       }
 
-      // 애니메이션 끝난 뒤 8초 후 타이핑 시작
       window.addEventListener("load", () => {
         setTimeout(typeLine, 8000);
       });
