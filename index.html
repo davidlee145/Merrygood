@@ -17,8 +17,8 @@
         font-family: "Courier", monospace;
         background-color: #000;
         color: #fff;
-        height: 100%; /* html과 body에 높이 100% 추가 */
-        overflow: hidden; /* 화면에서 스크롤바를 숨김 */
+        height: 100%;
+        overflow: hidden;
       }
 
       body {
@@ -30,7 +30,7 @@
       }
 
       header {
-        padding: 50px 0;
+        padding: 50px 0 20px;
       }
 
       h1 {
@@ -38,42 +38,34 @@
         margin: 0;
       }
 
-      /* 자동차 애니메이션 */
       .car {
-        font-family: "Courier", monospace;
         font-size: 18px;
         color: white;
         position: absolute;
         top: 200px;
-        left: 25%; /* 간격을 좁혀서 25%로 설정 */
+        left: 25%;
         animation: moveCar 8s ease-out forwards;
       }
 
-      /* 자동차 애니메이션: 왼쪽에서 오다가 멈추는 효과 */
       @keyframes moveCar {
         0% {
           left: -200px;
         }
-        50% {
-          left: 25%;
-        }
+        50%,
         100% {
-          left: 25%; /* 자동차의 위치를 25%로 설정하여 더 가까워짐 */
+          left: 25%;
         }
       }
 
-      /* 드론 애니메이션: 오른쪽 상단에서 대각선으로 왼쪽 아래로 떨어지는 효과 */
       .drone {
-        font-family: "Courier", monospace;
         font-size: 18px;
         color: white;
         position: absolute;
         top: -100px;
-        right: 25%; /* 간격을 좁혀서 25%로 설정 */
+        right: 25%;
         animation: moveDrone 6s ease-out forwards;
       }
 
-      /* 드론 애니메이션: 오른쪽 상단에서 대각선으로 왼쪽 아래로 떨어지는 효과 */
       @keyframes moveDrone {
         0% {
           top: -100px;
@@ -81,8 +73,22 @@
         }
         100% {
           top: 150px;
-          right: 25%; /* 드론의 위치를 25%로 설정하여 간격을 좁힘 */
+          right: 25%;
         }
+      }
+
+      main {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #timeline {
+        font-size: 1.2em;
+        text-align: left;
+        white-space: pre-line;
       }
 
       footer {
@@ -90,65 +96,68 @@
         background-color: #000;
         color: #fff;
         text-align: center;
-        margin-top: auto; /* 푸터를 항상 하단에 위치시키기 위해 사용 */
       }
 
-      /* 데스크탑 화면에서의 기본 스타일 */
       @media (min-width: 1025px) {
         h1 {
           font-size: 3em;
         }
-        .car {
-          font-size: 18px;
-          left: 25%; /* 간격을 25%로 좁힘 */
-        }
+        .car,
         .drone {
           font-size: 18px;
-          right: 25%; /* 간격을 25%로 좁힘 */
+        }
+        .car {
+          left: 25%;
+        }
+        .drone {
+          right: 25%;
         }
       }
 
-      /* 태블릿 화면에서의 스타일 */
       @media (max-width: 1024px) and (min-width: 768px) {
         h1 {
           font-size: 2.5em;
         }
-        .car {
-          font-size: 16px;
-          left: 15%; /* 간격을 더 좁힘 */
-        }
+        .car,
         .drone {
           font-size: 16px;
-          right: 15%; /* 간격을 더 좁힘 */
+        }
+        .car {
+          left: 15%;
+        }
+        .drone {
+          right: 15%;
         }
       }
 
-      /* 모바일 화면에서의 스타일 */
       @media (max-width: 767px) {
         h1 {
           font-size: 2em;
         }
-        .car {
+        .car,
+        .drone {
           font-size: 14px;
+        }
+        .car {
           left: 10%;
         }
         .drone {
-          font-size: 14px;
           right: 10%;
         }
       }
 
-      /* 매우 작은 모바일 화면에서의 스타일 */
       @media (max-width: 480px) {
         h1 {
           font-size: 1.5em;
         }
-        .car {
+        .car,
+        .drone {
           font-size: 14px;
+        }
+        .car {
           left: 5%;
         }
         .drone {
-          font-size: 14px;
           right: 5%;
         }
       }
@@ -166,8 +175,7 @@
      /|_||_\`.__
     (   _    _ _\
     =`-(_)--(_)-'
-        </pre
-      >
+      </pre>
     </div>
 
     <!-- 드론 애니메이션 -->
@@ -175,12 +183,53 @@
       <pre>
      __|__
 ----(_)----
-        </pre
-      >
+      </pre>
     </div>
+
+    <!-- 타이핑 애니메이션 영역 -->
+    <main>
+      <div id="timeline"></div>
+    </main>
 
     <footer>
       <p>© 2025 Merrygood Co., Ltd. All rights reserved.</p>
     </footer>
+
+    <!-- 타이핑 애니메이션 스크립트 -->
+    <script>
+  const timelineElement = document.getElementById("timeline");
+
+  const timelineTexts = [
+    "2024.09 법인 설립",
+    "2024.09 DailyEnglish 영어 학습 사이트 런칭",
+    "2025.01 중국 동북삼성 출장(모빌리티)",
+    "2025.03 프랑스 출장(모빌리티), Tranoi 참관",
+    "2025.07 Keryak 커피 프랜차이즈 준비 중..."
+  ];
+
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function typeLine() {
+    if (lineIndex < timelineTexts.length) {
+      const currentLine = timelineTexts[lineIndex];
+      if (charIndex < currentLine.length) {
+        timelineElement.innerHTML += currentLine.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, 80); // 타이핑 속도
+      } else {
+        timelineElement.innerHTML += "\n";
+        charIndex = 0;
+        lineIndex++;
+        setTimeout(typeLine, 500); // 줄 전환 대기
+      }
+    }
+  }
+
+  // 8초 후 타이핑 시작 (전기차 애니메이션이 끝난 후)
+  window.addEventListener("load", () => {
+    setTimeout(typeLine, 8000);
+  });
+</script>
   </body>
 </html>
