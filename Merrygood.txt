@@ -454,62 +454,62 @@
     </div>
   </section>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid" style="grid-template-columns: 1fr 1.2fr; gap: 40px;">
-      
-      <!-- Brand -->
-      <div class="footer-col">
-        <h5>Merrygood</h5>
-        <p style="color: var(--muted); max-width: 360px; line-height: 1.6;">
-          Make a love story with your customers.  
-          We create meaningful brand and digital experiences.
-        </p>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>Section</h5>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
 
-        <ul class="footer-links" style="margin-top: 14px;">
-          <li><a href="/">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
+        <div class="footer-col">
+          <h5>Section</h5>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
 
-      <!-- Contact -->
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <p style="color: var(--muted); margin-bottom: 14px;">
-          Have a project in mind?  
-          Let’s talk.
-        </p>
+        <div class="footer-col">
+          <h5>Section</h5>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
 
-        <a href="contact.html" class="primary" style="
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 12px 18px;
-          border-radius: 999px;
-          text-decoration: none;
-        ">
-          Get in touch →
-        </a>
-
-        <div style="margin-top: 18px; color: var(--muted); font-size: 14px;">
-          hello@merrygood.kr<br />
-          Seoul · Global
+        <div class="footer-col newsletter">
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of what's new and exciting from us.</p>
+          <div class="newsletter-row">
+            <input class="input" id="newsletter1" type="email" placeholder="Email address" />
+            <button class="primary" type="button">Subscribe</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
-      <ul class="social" aria-label="Social links">
-        <li><a href="#" aria-label="Twitter">T</a></li>
-        <li><a href="#" aria-label="Instagram">I</a></li>
-        <li><a href="#" aria-label="Facebook">F</a></li>
-      </ul>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Company, Inc. All rights reserved.</p>
+        <ul class="social" aria-label="Social links">
+          <li><a href="#" aria-label="Twitter">T</a></li>
+          <li><a href="#" aria-label="Instagram">I</a></li>
+          <li><a href="#" aria-label="Facebook">F</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     let lastScrollTop = 0;
@@ -567,37 +567,6 @@
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && offcanvas.classList.contains("open")) closeMenu();
     });
-    // 1) 오프캔버스 메뉴에서 링크 클릭하면 메뉴 닫기 + 네브바 숨김 처리
-  document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", () => {
-      // 메뉴 닫기
-      closeMenu();
-
-      // 점프 스크롤은 scroll 이벤트 판정이 애매할 수 있어서,
-      // 약간 늦게 네브바 상태를 강제로 맞춰줌
-      setTimeout(() => {
-        const y = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (y > 50) {
-          navbar.classList.add("hide-navbar");   // 스크롤 내려간 상태처럼 처리
-          navbar.classList.remove("scrolled");
-          lastScrollTop = y;
-        }
-      }, 50);
-    });
-  });
-
-  // 2) 해시(#about 등)로 이동하는 모든 경우(주소창 클릭/뒤로가기 포함)에도 보정
-  window.addEventListener("hashchange", () => {
-    setTimeout(() => {
-      const y = window.pageYOffset || document.documentElement.scrollTop;
-      if (y > 50) {
-        navbar.classList.add("hide-navbar");
-        navbar.classList.remove("scrolled");
-        lastScrollTop = y;
-      }
-    }, 50);
-  });
   </script>
 </body>
 </html>
