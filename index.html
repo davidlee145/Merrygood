@@ -1,603 +1,946 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Merrygood</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Merrygood</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@500&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    :root{
-      --nav-h: 80px;
-      --container: 1200px;
-      --text: #111;
-      --muted: #6b7280;
-      --bg: #fff;
-      --shadow: 0 10px 30px rgba(0,0,0,.12);
-      --radius-lg: 22px;
-    }
-
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif; color: var(--text); background: var(--bg); }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
-
-    /* ===== NAV ===== */
-    .navbar{
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      z-index: 50;
-      background: rgba(0,0,0,0);
-      transition: top .7s ease, background-color .25s ease, box-shadow .25s ease;
-    }
-    .navbar.scrolled{
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-    }
-    .navbar.hide-navbar{ top: calc(var(--nav-h) * -1.35); }
-
-    .nav-inner{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0;
-      position: relative;
-    }
-
-    .brand{
-      position: absolute;
-      top: 0; left: 0;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      z-index: 2;
-    }
-    .brand img{ height: var(--nav-h); width: auto; }
-
-    /* menu button */
-    .menu-btn{
-      position: absolute;
-      top: 0; right: 0;
-      height: var(--nav-h);
-      width: 150px;
-      background: #000;
-      color: #fff;
-      border: 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-
-      z-index: 9999;
-      isolation: isolate;
-      mix-blend-mode: normal;
-      line-height: 1;
-    }
-    .menu-btn:hover{ background: #333; }
-
-    .hamburger{
-      display: block;
-      shape-rendering: crispEdges;
-    }
-    .hamburger line{
-      stroke: #fff;
-      stroke-width: 3;
-      stroke-linecap: butt;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .menu-text{
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: .3px;
-    }
-
-    /* ===== OFFCANVAS ===== */
-    .backdrop{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s ease;
-      z-index: 60;
-    }
-    .backdrop.open{
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .offcanvas{
-      position: fixed;
-      top: 0; right: 0;
-      height: 100vh;
-      width: min(360px, 92vw);
-      background: #000;
-      color: #fff;
-      transform: translateX(100%);
-      transition: transform .25s ease;
-      z-index: 70;
-      display: flex;
-      flex-direction: column;
-    }
-    .offcanvas.open{ transform: translateX(0); }
-
-    .off-header{
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-    }
-    .off-title{ font-size: 18px; font-weight: 700; }
-    .off-close{
-      background: transparent;
-      border: 0;
-      color: #fff;
-      font-size: 26px;
-      line-height: 1;
-      cursor: pointer;
-      padding: 6px 10px;
-    }
-
-    .off-body{ padding: 18px; }
-    .off-nav{ list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .off-nav a{
-      display: block;
-      padding: 12px 10px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.06);
-      transition: background-color .2s ease;
-    }
-    .off-nav a:hover{ background: rgba(255,255,255,.12); }
-
-    /* ===== HERO ===== */
-    .main-section{
-      min-height: 100vh;
-      background-image: url("image/main.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: grid;
-      place-items: center;
-      position: relative;
-    }
-    .main-section::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: rgba(0,0,0,.25);
-    }
-    .hero{
-      position: relative;
-      padding-top: var(--nav-h);
-      text-align: center;
-      width: min(900px, calc(100% - 32px));
-    }
-    h1.hero-title{
-      font-family: "Lora", serif;
-      color: #fff;
-      font-size: clamp(32px, 5vw, 64px);
-      line-height: 1.15;
-      margin: 0;
-      font-weight: 700;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    .text-animated{ animation: fadeIn 1.6s ease-out; }
-
-    /* ===== SECTION 2-CARDS ===== */
-    .section-pad{ padding: 40px 0; }
-    .two-col{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-    @media (min-width: 900px){
-      .two-col{ grid-template-columns: 1fr 1fr; }
-    }
-
-    .panel{
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      min-height: 420px;
-      display: grid;
-      place-items: center;
-      padding: 36px 22px;
-      position: relative;
-    }
-    .panel.dark{
-      background: #111;
-      color: #fff;
-    }
-    .panel.light{
-      background: #f3f4f6;
-      color: #111;
-    }
-    .panel h2{
-      margin: 0 0 8px 0;
-      font-size: 32px;
-      font-weight: 800;
-    }
-    .panel p{ margin: 0; color: inherit; opacity: .9; font-size: 18px; }
-
-    .mock{
-      width: 82%;
-      height: 300px;
-      border-radius: 21px 21px 0 0;
-      margin-top: 26px;
-      box-shadow: var(--shadow);
-    }
-    .mock.light{ background: rgba(255,255,255,.9); }
-    .mock.dark{ background: #000; }
-
-    /* ===== IMAGE OVERLAY SECTION ===== */
-    .overlay-section{
-      position: relative;
-      padding: 70px 0;
-      overflow: hidden;
-      background: #f3f4f6;
-      text-align: center;
-    }
-    .overlay-section img.bg-image{
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: .3;
-      z-index: 0;
-    }
-    .overlay-content{
-      position: relative;
-      z-index: 1;
-      width: min(720px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 24px 0;
-    }
-    .overlay-content h1{
-      font-family: "Lora", serif;
-      font-size: clamp(28px, 4vw, 44px);
-      margin: 0 0 10px;
-      font-weight: 700;
-    }
-    .overlay-content h3{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-    .actions{
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.85);
-      backdrop-filter: blur(6px);
-      cursor: pointer;
-    }
-    .btn:hover{ background: rgba(255,255,255,1); }
-
-    /* ===== FOOTER ===== */
-    footer{
-      padding: 56px 0 18px;
-      border-top: 1px solid rgba(0,0,0,.08);
-      background: #fff;
-    }
-    .footer-grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 26px;
-    }
-    @media (min-width: 900px){
-      .footer-grid{
-        grid-template-columns: 1fr 1fr 1fr 1.3fr;
-        align-items: start;
+    <style>
+      :root {
+        --nav-h: 80px;
+        --container: 1200px;
+        --text: #111;
+        --muted: #6b7280;
+        --bg: #fff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        --radius-lg: 22px;
       }
-    }
-    .footer-col h5{ margin: 0 0 12px; font-size: 16px; }
-    .footer-links{ list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-    .footer-links a{ color: var(--muted); }
-    .footer-links a:hover{ color: var(--text); }
 
-    .newsletter p{ margin: 8px 0 14px; color: var(--muted); }
-    .newsletter-row{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .input{
-      flex: 1;
-      min-width: 180px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.14);
-      outline: none;
-    }
-    .primary{
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 0;
-      background: #2563eb;
-      color: #fff;
-      cursor: pointer;
-    }
-    .primary:hover{ filter: brightness(.95); }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        width: min(var(--container), calc(100% - 32px));
+        margin: 0 auto;
+      }
 
-    .footer-bottom{
-      margin-top: 34px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(0,0,0,.08);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--muted);
-    }
-    .social{
-      list-style: none;
-      display: flex;
-      gap: 12px;
-      padding: 0;
-      margin: 0;
-    }
-    .social a{
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      color: var(--text);
-    }
-    .social a:hover{ background: rgba(0,0,0,.04); }
+      /* ===== NAV ===== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0);
+        transition: top 0.7s ease, background-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+      .navbar.hide-navbar {
+        top: calc(var(--nav-h) * -1.35);
+      }
 
-    @media (prefers-reduced-motion: reduce){
-      *{ transition: none !important; animation: none !important; }
-    }
-  </style>
-</head>
+      .nav-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        position: relative;
+      }
 
-<body>
-  <nav class="navbar" aria-label="Global Navigation">
-    <div class="container nav-inner">
-      <a class="brand" href="/">
-        <img src="image/logo.png" alt="Merrygood" />
-      </a>
+      .brand {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        z-index: 2;
+      }
+      .brand img {
+        height: var(--nav-h);
+        width: auto;
+      }
 
-      <button class="menu-btn" id="openMenu" type="button" aria-controls="offcanvas" aria-expanded="false">
-        <svg class="hamburger" width="24" height="12" viewBox="0 0 24 12" aria-hidden="true" focusable="false">
-          <line x1="0" y1="2" x2="24" y2="2"></line>
-          <line x1="0" y1="10" x2="24" y2="10"></line>
-        </svg>
-        <span class="menu-text">Menu</span>
-      </button>
-    </div>
-  </nav>
+      /* ===== ✅ LANGUAGE TOGGLE (추가) ===== */
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 150px; /* menu-btn width */
+        height: var(--nav-h);
+        width: 96px;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-  <div class="backdrop" id="backdrop" hidden></div>
+        background: rgba(0, 0, 0, 0);
+        color: #fff; /* hero 위에서 흰색 */
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        line-height: 1;
+      }
+      .navbar.scrolled .lang-toggle {
+        color: #111;
+      }
+      .lang-toggle:hover {
+        opacity: 0.82;
+      }
+      .lang-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(0, 0, 0, 0.14);
+        backdrop-filter: blur(6px);
+      }
+      .navbar.scrolled .lang-pill {
+        border-color: rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.8);
+      }
 
-  <aside class="offcanvas" id="offcanvas" aria-hidden="true">
-    <div class="off-header">
-      <div class="off-title">Menu</div>
-      <button class="off-close" id="closeMenu" type="button" aria-label="Close">×</button>
-    </div>
-    <div class="off-body">
-      <ul class="off-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#b">B</a></li>
-        <li><a href="#c">C</a></li>
-        <li><a href="#d">D</a></li>
-      </ul>
-    </div>
-  </aside>
+      /* menu button */
+      .menu-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: var(--nav-h);
+        width: 150px;
+        background: #000;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
 
-  <main class="main-section">
-    <section class="hero">
-      <h1 class="hero-title text-animated">Make a love story with your customers</h1>
-    </section>
-  </main>
+        z-index: 9999;
+        isolation: isolate;
+        mix-blend-mode: normal;
+        line-height: 1;
+      }
+      .menu-btn:hover {
+        background: #333;
+      }
 
-  <section class="section-pad">
-    <div class="container">
-      <div class="two-col">
-        <article class="panel dark">
-          <div>
-            <h2>Another headline</h2>
-            <p>And an even wittier subheading.</p>
-            <div class="mock light" aria-hidden="true"></div>
-          </div>
-        </article>
+      .hamburger {
+        display: block;
+        shape-rendering: crispEdges;
+      }
+      .hamburger line {
+        stroke: #fff;
+        stroke-width: 3;
+        stroke-linecap: butt;
+        vector-effect: non-scaling-stroke;
+      }
 
-        <article class="panel light">
-          <div>
-            <h2>Another headline</h2>
-            <p>And an even wittier subheading.</p>
-            <div class="mock dark" aria-hidden="true"></div>
-          </div>
-        </article>
+      .menu-text {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+
+      /* ===== OFFCANVAS ===== */
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        z-index: 60;
+      }
+      .backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .offcanvas {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(360px, 92vw);
+        background: #000;
+        color: #fff;
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+        z-index: 70;
+        display: flex;
+        flex-direction: column;
+      }
+      .offcanvas.open {
+        transform: translateX(0);
+      }
+
+      .off-header {
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .off-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .off-close {
+        background: transparent;
+        border: 0;
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 6px 10px;
+      }
+
+      .off-body {
+        padding: 18px;
+      }
+      .off-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+      .off-nav a {
+        display: block;
+        padding: 12px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+        transition: background-color 0.2s ease;
+      }
+      .off-nav a:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* ===== HERO ===== */
+      .main-section {
+        min-height: 100vh;
+        background-image: url("image/main.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .main-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .hero {
+        position: relative;
+        padding-top: var(--nav-h);
+        text-align: center;
+        width: min(900px, calc(100% - 32px));
+      }
+      h1.hero-title {
+        font-family: "Lora", serif;
+        color: #fff;
+        font-size: clamp(32px, 5vw, 64px);
+        line-height: 1.15;
+        margin: 0;
+        font-weight: 700;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .text-animated {
+        animation: fadeIn 1.6s ease-out;
+      }
+
+      /* ===== SECTION 2-CARDS ===== */
+      .section-pad {
+        padding: 40px 0;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      @media (min-width: 900px) {
+        .two-col {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .panel {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        min-height: 420px;
+        display: grid;
+        place-items: center;
+        padding: 36px 22px;
+        position: relative;
+      }
+      .panel.dark {
+        background: #111;
+        color: #fff;
+      }
+      .panel.light {
+        background: #f3f4f6;
+        color: #111;
+      }
+      .panel h2 {
+        margin: 0 0 8px 0;
+        font-size: 32px;
+        font-weight: 800;
+      }
+      .panel p {
+        margin: 0;
+        color: inherit;
+        opacity: 0.9;
+        font-size: 18px;
+      }
+
+      .mock {
+        width: 82%;
+        height: 300px;
+        border-radius: 21px 21px 0 0;
+        margin-top: 26px;
+        box-shadow: var(--shadow);
+      }
+      .mock.light {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .mock.dark {
+        background: #000;
+      }
+
+      /* ===== IMAGE OVERLAY SECTION ===== */
+      .overlay-section {
+        position: relative;
+        padding: 70px 0;
+        overflow: hidden;
+        background: #f3f4f6;
+        text-align: center;
+      }
+      .overlay-section img.bg-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.3;
+        z-index: 0;
+      }
+      .overlay-content {
+        position: relative;
+        z-index: 1;
+        width: min(720px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0;
+      }
+      .overlay-content h1 {
+        font-family: "Lora", serif;
+        font-size: clamp(28px, 4vw, 44px);
+        margin: 0 0 10px;
+        font-weight: 700;
+      }
+      .overlay-content h3 {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        padding: 56px 0 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+      @media (min-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr 1fr 1.3fr;
+          align-items: start;
+        }
+      }
+      .footer-col h5 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .footer-links a {
+        color: var(--muted);
+      }
+      .footer-links a:hover {
+        color: var(--text);
+      }
+
+      .newsletter p {
+        margin: 8px 0 14px;
+        color: var(--muted);
+      }
+      .newsletter-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .input {
+        flex: 1;
+        min-width: 180px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        outline: none;
+      }
+      .primary {
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 0;
+        background: #2563eb;
+        color: #fff;
+        cursor: pointer;
+      }
+      .primary:hover {
+        filter: brightness(0.95);
+      }
+
+      .footer-bottom {
+        margin-top: 34px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+      .social {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        padding: 0;
+        margin: 0;
+      }
+      .social a {
+        display: inline-flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        color: var(--text);
+      }
+      .social a:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+
+      /* ===== (About 타이포 참고) Index 한글 타이포 ===== */
+      :root {
+        --body: 15px;
+        --body-lh: 1.75;
+        --body-sm: 13px;
+        --body-sm-lh: 1.6;
+      }
+
+      body {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        word-break: keep-all;
+      }
+
+      /* Pause split: 이미지 + 텍스트 */
+      .pause-split {
+        align-items: stretch;
+      }
+
+      /* 이미지 카드 */
+      .pause-image {
+        padding: 0;
+        background: #000;
+      }
+      .pause-image-link {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .pause-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .pause-cta {
+        position: absolute;
+        left: 22px;
+        bottom: 22px;
+        color: #fff;
+        font-size: var(--body-sm);
+        line-height: var(--body-sm-lh);
+        letter-spacing: -0.01em;
+        opacity: 0.92;
+        z-index: 2;
+      }
+
+      .pause-image-link::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      .pause-image-link:hover::after {
+        opacity: 1;
+      }
+
+      /* 텍스트 카드 (About 톤) */
+      .pause-text {
+        background: #f3f4f6;
+        color: #111;
+        display: flex;
+        align-items: center;
+      }
+
+      .pause-text-inner {
+        max-width: 440px;
+      }
+
+      .pause-text h2 {
+        margin: 0 0 10px 0;
+        font-size: 28px; /* about headline 느낌 */
+        line-height: 1.25;
+        font-weight: 850;
+        letter-spacing: -0.2px;
+      }
+
+      .pause-text .tagline {
+        margin: 4px 0 18px 0;
+        font-size: 14px; /* ↓ 살짝 줄이기 */
+        line-height: 1.6;
+        color: var(--muted);
+        letter-spacing: -0.01em;
+      }
+
+      .pause-text .desc {
+        margin: 0;
+        font-size: var(--body);
+        line-height: var(--body-lh);
+        letter-spacing: -0.01em;
+        color: #111;
+        opacity: 0.92;
+      }
+
+      /* 모바일에서 여백/가독성 조금 더 */
+      @media (max-width: 520px) {
+        .pause-text-inner {
+          max-width: 100%;
+        }
+        .pause-text h2 {
+          font-size: 26px;
+        }
+      }
+
+      .pause-text h2 {
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+        letter-spacing: -0.08px;
+        text-rendering: optimizeLegibility;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Global Navigation">
+      <div class="container nav-inner">
+        <a class="brand" href="/">
+          <img src="image/logo.png" alt="Merrygood" />
+        </a>
+
+        <!-- ✅ (추가) Language toggle -->
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          type="button"
+          aria-label="Toggle language"
+        >
+          <span class="lang-pill" id="langPill">EN</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          id="openMenu"
+          type="button"
+          aria-controls="offcanvas"
+          aria-expanded="false"
+        >
+          <svg
+            class="hamburger"
+            width="24"
+            height="12"
+            viewBox="0 0 24 12"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <line x1="0" y1="2" x2="24" y2="2"></line>
+            <line x1="0" y1="10" x2="24" y2="10"></line>
+          </svg>
+          <span class="menu-text">Menu</span>
+        </button>
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <section class="overlay-section" id="about">
-    <img src="image/map.jpg" class="bg-image" alt="" />
-    <div class="overlay-content">
-      <h1>The world in his arms</h1>
-      <h3>Hyperconnectivity and Diversity</h3>
-      <div class="actions">
-        <a class="btn" href="about.html">Learn more →</a>
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <aside class="offcanvas" id="offcanvas" aria-hidden="true">
+      <div class="off-header">
+        <div class="off-title">Menu</div>
+        <button
+          class="off-close"
+          id="closeMenu"
+          type="button"
+          aria-label="Close"
+        >
+          ×
+        </button>
       </div>
-    </div>
-  </section>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid" style="grid-template-columns: 1fr 1.2fr; gap: 40px;">
-      
-      <!-- Brand -->
-      <div class="footer-col">
-        <h5>Merrygood</h5>
-        <p style="color: var(--muted); max-width: 360px; line-height: 1.6;">
-          Make a love story with your customers.  
-          We create meaningful brand and digital experiences.
-        </p>
-
-        <ul class="footer-links" style="margin-top: 14px;">
+      <div class="off-body">
+        <ul class="off-nav">
           <li><a href="/">Home</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#service">Service</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
+    </aside>
 
-      <!-- Contact -->
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <p style="color: var(--muted); margin-bottom: 14px;">
-          Have a project in mind?  
-          Let’s talk.
-        </p>
+    <main class="main-section">
+      <section class="hero">
+        <h1 class="hero-title text-animated">
+          Make a love story with your customers
+        </h1>
+      </section>
+    </main>
 
-        <a href="contact.html" class="primary" style="
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 12px 18px;
-          border-radius: 999px;
-          text-decoration: none;
-        ">
-          Get in touch →
-        </a>
+    <section class="section-pad" id="service">
+      <div class="container">
+        <div class="two-col pause-split">
+          <!-- LEFT : 이미지(웹사이트 링크만) -->
+          <article class="panel pause-image">
+            <a
+              href="https://www.pauseontheway.com"
+              target="_blank"
+              rel="noopener"
+              class="pause-image-link"
+              aria-label="Pause on the Way website"
+            >
+              <img src="image/pause.jpg" alt="Pause on the Way" />
+              <span class="pause-cta">Visit website →</span>
+            </a>
+          </article>
 
-        <div style="margin-top: 18px; color: var(--muted); font-size: 14px;">
-          hello@merrygood.kr<br />
-          Seoul · Global
+          <!-- RIGHT : 소개글(About 타이포 톤) -->
+          <article class="panel pause-text">
+            <div class="pause-text-inner">
+              <h2>Pause on the Way</h2>
+
+              <!-- ✅ (수정) 한글 요소만 data-i18n 부여 -->
+              <p class="tagline" data-i18n="ko.pause.tagline">
+                낯선 길 위에서도 멈추어 쉬다
+              </p>
+
+              <p class="desc" data-i18n="ko.pause.desc">
+                Pause on the Way는 여행자·노마드·출장자를 위한 호텔 심리·정서
+                케어 서비스입니다. 투숙 중 편안한 라운지 또는 카페에서 전문
+                상담사와의 가벼운 대화로 마음의 여백을 만들어 드립니다.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
-      <ul class="social" aria-label="Social links">
-        <li><a href="#" aria-label="Twitter">T</a></li>
-        <li><a href="#" aria-label="Instagram">I</a></li>
-        <li><a href="#" aria-label="Facebook">F</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
+    <section class="overlay-section" id="about">
+      <img src="image/map.jpg" class="bg-image" alt="" />
+      <div class="overlay-content">
+        <h1>The world in his arms</h1>
+        <h3>Hyperconnectivity and Diversity</h3>
+        <div class="actions">
+          <a class="btn" href="about.html">Learn more →</a>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    let lastScrollTop = 0;
-    const navbar = document.querySelector(".navbar");
+    <footer>
+      <div class="container">
+        <div
+          class="footer-grid"
+          style="grid-template-columns: 1fr 1.2fr; gap: 40px"
+        >
+          <!-- Brand -->
+          <div class="footer-col">
+            <h5>Merrygood</h5>
+            <p style="color: var(--muted); max-width: 360px; line-height: 1.6">
+              Make a love story with your customers. We create meaningful brand
+              and digital experiences.
+            </p>
 
-    window.addEventListener("scroll", () => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            <ul class="footer-links" style="margin-top: 14px">
+              <li><a href="/">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#service">Service</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
 
-      if (currentScroll > lastScrollTop && currentScroll > 50) {
-        navbar.classList.add("hide-navbar");
-        navbar.classList.remove("scrolled");
-      } else if (currentScroll < lastScrollTop && currentScroll > 50) {
-        navbar.classList.remove("hide-navbar");
-        navbar.classList.add("scrolled");
-      } else if (currentScroll <= 50) {
-        navbar.classList.remove("scrolled");
-      }
+          <!-- Contact -->
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <p style="color: var(--muted); margin-bottom: 14px">
+              Have a project in mind? Let’s talk.
+            </p>
 
-      lastScrollTop = Math.max(currentScroll, 0);
-    });
+            <a
+              href="contact.html"
+              class="primary"
+              style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 12px 18px;
+                border-radius: 999px;
+                text-decoration: none;
+              "
+            >
+              Get in touch →
+            </a>
 
-    const offcanvas = document.getElementById("offcanvas");
-    const backdrop = document.getElementById("backdrop");
-    const openBtn = document.getElementById("openMenu");
-    const closeBtn = document.getElementById("closeMenu");
+            <div style="margin-top: 18px; color: var(--muted); font-size: 14px">
+              hello@merrygood.kr<br />
+              Seoul · Global
+            </div>
+          </div>
+        </div>
 
-    function openMenu(){
-      offcanvas.classList.add("open");
-      offcanvas.setAttribute("aria-hidden", "false");
-      openBtn.setAttribute("aria-expanded", "true");
+        <!-- Bottom -->
+        <div class="footer-bottom">
+          <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
-      backdrop.hidden = false;
-      requestAnimationFrame(() => backdrop.classList.add("open"));
+    <script>
+      let lastScrollTop = 0;
+      const navbar = document.querySelector(".navbar");
 
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-    }
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
 
-    function closeMenu(){
-      offcanvas.classList.remove("open");
-      offcanvas.setAttribute("aria-hidden", "true");
-      openBtn.setAttribute("aria-expanded", "false");
-
-      backdrop.classList.remove("open");
-      setTimeout(() => { backdrop.hidden = true; }, 250);
-
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    }
-
-    openBtn.addEventListener("click", openMenu);
-    closeBtn.addEventListener("click", closeMenu);
-    backdrop.addEventListener("click", closeMenu);
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && offcanvas.classList.contains("open")) closeMenu();
-    });
-    // 1) 오프캔버스 메뉴에서 링크 클릭하면 메뉴 닫기 + 네브바 숨김 처리
-  document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", () => {
-      // 메뉴 닫기
-      closeMenu();
-
-      // 점프 스크롤은 scroll 이벤트 판정이 애매할 수 있어서,
-      // 약간 늦게 네브바 상태를 강제로 맞춰줌
-      setTimeout(() => {
-        const y = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (y > 50) {
-          navbar.classList.add("hide-navbar");   // 스크롤 내려간 상태처럼 처리
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+          navbar.classList.add("hide-navbar");
           navbar.classList.remove("scrolled");
-          lastScrollTop = y;
+        } else if (currentScroll < lastScrollTop && currentScroll > 50) {
+          navbar.classList.remove("hide-navbar");
+          navbar.classList.add("scrolled");
+        } else if (currentScroll <= 50) {
+          navbar.classList.remove("scrolled");
         }
-      }, 50);
-    });
-  });
 
-  // 2) 해시(#about 등)로 이동하는 모든 경우(주소창 클릭/뒤로가기 포함)에도 보정
-  window.addEventListener("hashchange", () => {
-    setTimeout(() => {
-      const y = window.pageYOffset || document.documentElement.scrollTop;
-      if (y > 50) {
-        navbar.classList.add("hide-navbar");
-        navbar.classList.remove("scrolled");
-        lastScrollTop = y;
+        lastScrollTop = Math.max(currentScroll, 0);
+      });
+
+      const offcanvas = document.getElementById("offcanvas");
+      const backdrop = document.getElementById("backdrop");
+      const openBtn = document.getElementById("openMenu");
+      const closeBtn = document.getElementById("closeMenu");
+
+      function openMenu() {
+        offcanvas.classList.add("open");
+        offcanvas.setAttribute("aria-hidden", "false");
+        openBtn.setAttribute("aria-expanded", "true");
+
+        backdrop.hidden = false;
+        requestAnimationFrame(() => backdrop.classList.add("open"));
+
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
       }
-    }, 50);
-  });
-  </script>
-</body>
+
+      function closeMenu() {
+        offcanvas.classList.remove("open");
+        offcanvas.setAttribute("aria-hidden", "true");
+        openBtn.setAttribute("aria-expanded", "false");
+
+        backdrop.classList.remove("open");
+        setTimeout(() => {
+          backdrop.hidden = true;
+        }, 250);
+
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+      }
+
+      openBtn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      backdrop.addEventListener("click", closeMenu);
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && offcanvas.classList.contains("open"))
+          closeMenu();
+      });
+      // 1) 오프캔버스 메뉴에서 링크 클릭하면 메뉴 닫기 + 네브바 숨김 처리
+      document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", () => {
+          // 메뉴 닫기
+          closeMenu();
+
+          // 점프 스크롤은 scroll 이벤트 판정이 애매할 수 있어서,
+          // 약간 늦게 네브바 상태를 강제로 맞춰줌
+          setTimeout(() => {
+            const y = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (y > 50) {
+              navbar.classList.add("hide-navbar"); // 스크롤 내려간 상태처럼 처리
+              navbar.classList.remove("scrolled");
+              lastScrollTop = y;
+            }
+          }, 50);
+        });
+      });
+
+      // 2) 해시(#about 등)로 이동하는 모든 경우(주소창 클릭/뒤로가기 포함)에도 보정
+      window.addEventListener("hashchange", () => {
+        setTimeout(() => {
+          const y = window.pageYOffset || document.documentElement.scrollTop;
+          if (y > 50) {
+            navbar.classList.add("hide-navbar");
+            navbar.classList.remove("scrolled");
+            lastScrollTop = y;
+          }
+        }, 50);
+      });
+
+      // ===== ✅ 한글만 EN으로 번역 + KR/EN 토글 =====
+      // EN = 영어(한글 번역본), KR = 원래 한글
+      const KO_TEXT = {
+        "ko.pause.tagline": "낯선 길 위에서도 멈추어 쉬다",
+        "ko.pause.desc":
+          "Pause on the Way는 여행자·노마드·출장자를 위한 호텔 심리·정서 케어 서비스입니다. 투숙 중 편안한 라운지 또는 카페에서 전문 상담사와의 가벼운 대화로 마음의 여백을 만들어 드립니다.",
+      };
+
+      const EN_TEXT = {
+        "ko.pause.tagline": "Pause and rest, even on unfamiliar roads",
+        "ko.pause.desc":
+          "Pause on the Way is a psychological and emotional care service for travelers, nomads, and business guests. During your stay, we create space for ease through light conversations with professional counselors in a comfortable lounge or café.",
+      };
+
+      const langToggleBtn = document.getElementById("langToggle");
+      const langPill = document.getElementById("langPill");
+
+      function applyLang(lang) {
+        const mode = lang === "ko" ? "ko" : "en";
+        document.documentElement.lang = mode;
+
+        // ✅ data-i18n 붙은 "한글 요소"만 바꾼다
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          const txt = mode === "ko" ? KO_TEXT[key] : EN_TEXT[key];
+          if (typeof txt === "string") el.textContent = txt;
+        });
+
+        if (langPill) langPill.textContent = mode === "ko" ? "KR" : "EN";
+        localStorage.setItem("lang", mode);
+      }
+
+      function toggleLang() {
+        const current = localStorage.getItem("lang") || "en";
+        const next = current === "ko" ? "en" : "ko";
+        applyLang(next);
+      }
+
+      // 기본값: EN (영어가 더 이쁘다고 했으니까)
+      applyLang(localStorage.getItem("lang") || "en");
+      langToggleBtn?.addEventListener("click", toggleLang);
+    </script>
+  </body>
 </html>

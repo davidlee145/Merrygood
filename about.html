@@ -1,661 +1,971 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Merrygood — About</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Merrygood — About</title>
 
-  <!-- Fonts: Lora (EN headline) + Noto Sans KR (KR body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
+    <!-- Fonts: Lora (EN headline) + Noto Sans KR (KR body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    :root{
-      --nav-h: 80px;
-      --container: 1200px;
+    <style>
+      :root {
+        --nav-h: 80px;
+        --container: 1200px;
 
-      --text: #111;
-      --muted: #6b7280;
-      --bg: #fff;
+        --text: #111;
+        --muted: #6b7280;
+        --bg: #fff;
 
-      --shadow: 0 10px 30px rgba(0,0,0,.12);
-      --radius-lg: 22px;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        --radius-lg: 22px;
 
-      /* HERO (설명은 살짝 크게) */
-      --hero-body: 17px;
-      --hero-lh: 1.8;
+        /* HERO (설명은 살짝 크게) */
+        --hero-body: 17px;
+        --hero-lh: 1.8;
 
-      /* CONTENT (조잡/투박함 방지) */
-      --body: 15px;
-      --body-lh: 1.75;
+        /* CONTENT (조잡/투박함 방지) */
+        --body: 15px;
+        --body-lh: 1.75;
 
-      /* SMALL (캡션/서브카피) */
-      --body-sm: 13px;
-      --body-sm-lh: 1.6;
-    }
+        /* SMALL (캡션/서브카피) */
+        --body-sm: 13px;
+        --body-sm-lh: 1.6;
+      }
 
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior: smooth; }
-    body{
-      margin: 0;
-      font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      font-weight: 400;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      word-break: keep-all;
-    }
-    a{ color: inherit; text-decoration: none; }
-    img{ max-width: 100%; display: block; }
-    .container{ width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        word-break: keep-all;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        width: min(var(--container), calc(100% - 32px));
+        margin: 0 auto;
+      }
 
-    /* ===== NAV (index와 동일) ===== */
-    .navbar{
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      z-index: 50;
-      background: rgba(0,0,0,0);
-      transition: top .7s ease, background-color .25s ease, box-shadow .25s ease;
-    }
-    .navbar.scrolled{
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-    }
-    .navbar.hide-navbar{ top: calc(var(--nav-h) * -1.35); }
+      /* ===== NAV (index와 동일) ===== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0);
+        transition: top 0.7s ease, background-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+      .navbar.hide-navbar {
+        top: calc(var(--nav-h) * -1.35);
+      }
 
-    .nav-inner{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0;
-      position: relative;
-    }
+      .nav-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        position: relative;
+      }
 
-    .brand{
-      position: absolute;
-      top: 0; left: 0;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      z-index: 2;
-    }
-    .brand img{ height: var(--nav-h); width: auto; }
+      .brand {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        z-index: 2;
+      }
+      .brand img {
+        height: var(--nav-h);
+        width: auto;
+      }
 
-    .menu-btn{
-      position: absolute;
-      top: 0; right: 0;
-      height: var(--nav-h);
-      width: 150px;
-      background: #000;
-      color: #fff;
-      border: 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      z-index: 9999;
-      isolation: isolate;
-      mix-blend-mode: normal;
-      line-height: 1;
-    }
-    .menu-btn:hover{ background: #333; }
+      .menu-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: var(--nav-h);
+        width: 150px;
+        background: #000;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        z-index: 9999;
+        isolation: isolate;
+        mix-blend-mode: normal;
+        line-height: 1;
+      }
+      .menu-btn:hover {
+        background: #333;
+      }
 
-    .hamburger{ display: block; shape-rendering: crispEdges; }
-    .hamburger line{
-      stroke: #fff;
-      stroke-width: 3;
-      stroke-linecap: butt;
-      vector-effect: non-scaling-stroke;
-    }
-    .menu-text{
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: .3px;
-    }
+      .hamburger {
+        display: block;
+        shape-rendering: crispEdges;
+      }
+      .hamburger line {
+        stroke: #fff;
+        stroke-width: 3;
+        stroke-linecap: butt;
+        vector-effect: non-scaling-stroke;
+      }
+      .menu-text {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
 
-    /* ===== OFFCANVAS (index와 동일) ===== */
-    .backdrop{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s ease;
-      z-index: 60;
-    }
-    .backdrop.open{ opacity: 1; pointer-events: auto; }
+      /* ===== OFFCANVAS (index와 동일) ===== */
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        z-index: 60;
+      }
+      .backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-    .offcanvas{
-      position: fixed;
-      top: 0; right: 0;
-      height: 100vh;
-      width: min(360px, 92vw);
-      background: #000;
-      color: #fff;
-      transform: translateX(100%);
-      transition: transform .25s ease;
-      z-index: 70;
-      display: flex;
-      flex-direction: column;
-    }
-    .offcanvas.open{ transform: translateX(0); }
+      .offcanvas {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(360px, 92vw);
+        background: #000;
+        color: #fff;
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+        z-index: 70;
+        display: flex;
+        flex-direction: column;
+      }
+      .offcanvas.open {
+        transform: translateX(0);
+      }
 
-    .off-header{
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-    }
-    .off-title{ font-size: 18px; font-weight: 700; }
-    .off-close{
-      background: transparent;
-      border: 0;
-      color: #fff;
-      font-size: 26px;
-      line-height: 1;
-      cursor: pointer;
-      padding: 6px 10px;
-    }
+      .off-header {
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .off-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .off-close {
+        background: transparent;
+        border: 0;
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 6px 10px;
+      }
 
-    .off-body{ padding: 18px; }
-    .off-nav{ list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .off-nav a{
-      display: block;
-      padding: 12px 10px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.06);
-      transition: background-color .2s ease;
-    }
-    .off-nav a:hover{ background: rgba(255,255,255,.12); }
+      .off-body {
+        padding: 18px;
+      }
+      .off-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+      .off-nav a {
+        display: block;
+        padding: 12px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+        transition: background-color 0.2s ease;
+      }
+      .off-nav a:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
 
-    /* ===== ABOUT HERO ===== */
-    .about-hero{
-      min-height: 100vh;
-      background-image: url("image/map.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: grid;
-      place-items: center;
-      position: relative;
-    }
-    .about-hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: rgba(0,0,0,.35);
-    }
-    .about-hero-inner{
-      position: relative;
-      padding-top: var(--nav-h);
-      width: min(900px, calc(100% - 32px));
-      text-align: center;
-      margin: 0 auto;
-    }
-    .about-hero-inner h1{
-      font-family: "Lora", serif;
-      color: #fff;
-      font-size: clamp(34px, 5vw, 64px);
-      line-height: 1.12;
-      margin: 0 0 14px;
-      font-weight: 700;
-      letter-spacing: .1px;
-    }
-    .about-hero-inner p{
-      margin: 0 auto;
-      color: rgba(255,255,255,.86);
-      max-width: 720px;
-      font-size: var(--hero-body);
-      line-height: var(--hero-lh);
-      letter-spacing: -0.01em;
-    }
+      /* ===== ABOUT HERO ===== */
+      .about-hero {
+        min-height: 100vh;
+        background-image: url("image/map.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+      }
+      .about-hero-inner {
+        position: relative;
+        padding-top: var(--nav-h);
+        width: min(900px, calc(100% - 32px));
+        text-align: center;
+        margin: 0 auto;
+      }
+      .about-hero-inner h1 {
+        font-family: "Lora", serif;
+        color: #fff;
+        font-size: clamp(34px, 5vw, 64px);
+        line-height: 1.12;
+        margin: 0 0 14px;
+        font-weight: 700;
+        letter-spacing: 0.1px;
+      }
+      .about-hero-inner p {
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.86);
+        max-width: 720px;
+        font-size: var(--hero-body);
+        line-height: var(--hero-lh);
+        letter-spacing: -0.01em;
+      }
 
-    /* ===== CONTENT ===== */
-    .section-pad{ padding: 70px 0; }
-    .divider{ border-top: 1px solid rgba(0,0,0,.08); }
+      /* ===== CONTENT ===== */
+      .section-pad {
+        padding: 70px 0;
+      }
+      .divider {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
 
-    .about-grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 26px;
-      align-items: start;
-    }
-    @media (min-width: 900px){
-      .about-grid{ grid-template-columns: 1.2fr .8fr; }
-    }
-
-    .stack{ display: grid; gap: 18px; }
-
-    .headline{
-      font-size: 28px;
-      line-height: 1.25;
-      margin: 0;
-      font-weight: 850;
-      letter-spacing: -0.2px;
-    }
-
-    .lede,
-    .note p,
-    .bullets li{
-      font-size: var(--body);
-      line-height: var(--body-lh);
-      letter-spacing: -0.01em;
-    }
-
-    .lede{ margin: 0; color: var(--muted); }
-
-    .note{
-      background: #f3f4f6;
-      border-radius: var(--radius-lg);
-      padding: 22px;
-    }
-    .note p{ margin: 0; color: #111; }
-
-    .note .muted{
-      color: var(--muted);
-      font-size: var(--body-sm);
-      line-height: var(--body-sm-lh);
-      letter-spacing: 0.02em;
-    }
-
-    .bullets{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-    .bullets li{
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.08);
-      background: #fff;
-      color: #111;
-    }
-    .bullets strong{ font-weight: 800; }
-
-    .cta-row{
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 8px;
-    }
-
-    /* ✅ About 전용 버튼(검정) - footer랑 클래스 충돌 없음 */
-    .btn2{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.9);
-      backdrop-filter: blur(6px);
-      cursor: pointer;
-    }
-    .btn2:hover{ background: rgba(255,255,255,1); }
-    .btn2.primary{
-      background: #111;
-      color: #fff;
-      border-color: #111;
-    }
-    .btn2.primary:hover{ background: #333; }
-
-    /* ===== FOOTER (index 톤 유지) ===== */
-    footer{
-      padding: 56px 0 18px;
-      border-top: 1px solid rgba(0,0,0,.08);
-      background: #fff;
-    }
-    .footer-grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 26px;
-    }
-    @media (min-width: 900px){
-      .footer-grid{
-        grid-template-columns: 1fr 1fr 1fr 1.3fr;
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
         align-items: start;
       }
-    }
-    .footer-col h5{ margin: 0 0 12px; font-size: 16px; }
-    .footer-links{ list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-    .footer-links a{ color: var(--muted); }
-    .footer-links a:hover{ color: var(--text); }
+      @media (min-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1.2fr 0.8fr;
+        }
+      }
 
-    /* ✅ 파란 Get in touch 버튼: footer 전용 클래스 */
-    .footer-btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 0;
-      background: #2563eb;
-      color: #fff;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .footer-btn:hover{ filter: brightness(.95); }
+      .stack {
+        display: grid;
+        gap: 18px;
+      }
 
-    .footer-bottom{
-      margin-top: 34px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(0,0,0,.08);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--muted);
-    }
-    .social{
-      list-style: none;
-      display: flex;
-      gap: 12px;
-      padding: 0;
-      margin: 0;
-    }
-    .social a{
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      color: var(--text);
-    }
-    .social a:hover{ background: rgba(0,0,0,.04); }
+      .headline {
+        font-size: 28px;
+        line-height: 1.25;
+        margin: 0;
+        font-weight: 850;
+        letter-spacing: -0.2px;
+      }
 
-    @media (prefers-reduced-motion: reduce){
-      *{ transition: none !important; animation: none !important; }
-      html{ scroll-behavior: auto; }
-    }
-  </style>
-</head>
+      .lede,
+      .note p,
+      .bullets li {
+        font-size: var(--body);
+        line-height: var(--body-lh);
+        letter-spacing: -0.01em;
+      }
 
-<body>
-  <!-- NAV -->
-  <nav class="navbar" aria-label="Global Navigation">
-    <div class="container nav-inner">
-      <a class="brand" href="index.html">
-        <img src="image/logo.png" alt="Merrygood" />
-      </a>
+      .lede {
+        margin: 0;
+        color: var(--muted);
+      }
 
-      <button class="menu-btn" id="openMenu" type="button" aria-controls="offcanvas" aria-expanded="false">
-        <svg class="hamburger" width="24" height="12" viewBox="0 0 24 12" aria-hidden="true" focusable="false">
-          <line x1="0" y1="2" x2="24" y2="2"></line>
-          <line x1="0" y1="10" x2="24" y2="10"></line>
-        </svg>
-        <span class="menu-text">Menu</span>
-      </button>
-    </div>
-  </nav>
+      .note {
+        background: #f3f4f6;
+        border-radius: var(--radius-lg);
+        padding: 22px;
+      }
+      .note p {
+        margin: 0;
+        color: #111;
+      }
 
-  <div class="backdrop" id="backdrop" hidden></div>
+      .note .muted {
+        color: var(--muted);
+        font-size: var(--body-sm);
+        line-height: var(--body-sm-lh);
+        letter-spacing: 0.02em;
+      }
 
-  <aside class="offcanvas" id="offcanvas" aria-hidden="true">
-    <div class="off-header">
-      <div class="off-title">Menu</div>
-      <button class="off-close" id="closeMenu" type="button" aria-label="Close">×</button>
-    </div>
-    <div class="off-body">
-      <ul class="off-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#why">Why</a></li>
-        <li><a href="#what">What</a></li>
-        <li><a href="#now">Now</a></li>
-        <li><a href="#vision">Vision</a></li>
-      </ul>
-    </div>
-  </aside>
+      .bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      .bullets li {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
+        color: #111;
+      }
+      .bullets strong {
+        font-weight: 800;
+      }
 
-  <!-- HERO -->
-  <header class="about-hero" id="top">
-    <div class="about-hero-inner">
-      <h1>Good lives, in moving worlds.</h1>
-      <p>
-        메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br/>
-        정서 케어에서 시작해, 노마드 라이프의 기반을 하나의 앱으로 연결합니다.
-      </p>
-    </div>
-  </header>
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 8px;
+      }
 
-  <main>
-    <!-- WHY -->
-    <section class="section-pad divider" id="why">
-      <div class="container">
-        <div class="about-grid">
-          <div class="stack">
-            <h2 class="headline">우리가 보는 변화</h2>
-            <p class="lede">
-              휴머노이드가 노동을 대체하고, 메타버스에서 아바타가 일하는 시대가 오면
-              사람은 더 자유롭게 이동할 수 있지만 동시에 더 쉽게 고립될 수 있습니다.
-              우리는 그 지점을 “다음 모빌리티의 문제”로 봅니다.
-            </p>
-          </div>
+      /* ✅ About 전용 버튼(검정) - footer랑 클래스 충돌 없음 */
+      .btn2 {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+      }
+      .btn2:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+      .btn2.primary {
+        background: #111;
+        color: #fff;
+        border-color: #111;
+      }
+      .btn2.primary:hover {
+        background: #333;
+      }
 
-          <div class="note">
-            <p>
-              <strong>궁극의 모빌리티는</strong><br/>
-              더 빨리 움직이는 것이 아니라<br/>
-              <strong>움직이지 않아도 되는 상태</strong>에 가까워진다고 생각합니다.
-            </p>
+      /* ===== FOOTER (index 톤 유지) ===== */
+      footer {
+        padding: 56px 0 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+      @media (min-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr 1fr 1.3fr;
+          align-items: start;
+        }
+      }
+      .footer-col h5 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .footer-links a {
+        color: var(--muted);
+      }
+      .footer-links a:hover {
+        color: var(--text);
+      }
+
+      /* ✅ 파란 Get in touch 버튼: footer 전용 클래스 */
+      .footer-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 0;
+        background: #2563eb;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .footer-btn:hover {
+        filter: brightness(0.95);
+      }
+
+      .footer-bottom {
+        margin-top: 34px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+      .social {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        padding: 0;
+        margin: 0;
+      }
+      .social a {
+        display: inline-flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        color: var(--text);
+      }
+      .social a:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ===== ✅ (추가) Language toggle 스타일: 기존 영향 최소 ===== */
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 150px; /* menu-btn width */
+        height: var(--nav-h);
+        width: 96px;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(0, 0, 0, 0);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        line-height: 1;
+      }
+      .navbar.scrolled .lang-toggle {
+        color: #111;
+      }
+      .lang-toggle:hover {
+        opacity: 0.82;
+      }
+      .lang-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(0, 0, 0, 0.14);
+        backdrop-filter: blur(6px);
+      }
+      .navbar.scrolled .lang-pill {
+        border-color: rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.8);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <nav class="navbar" aria-label="Global Navigation">
+      <div class="container nav-inner">
+        <a class="brand" href="index.html">
+          <img src="image/logo.png" alt="Merrygood" />
+        </a>
+
+        <!-- ✅ (추가) Language toggle 버튼만 추가 (기존 구조 유지) -->
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          type="button"
+          aria-label="Toggle language"
+        >
+          <span class="lang-pill" id="langPill">EN</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          id="openMenu"
+          type="button"
+          aria-controls="offcanvas"
+          aria-expanded="false"
+        >
+          <svg
+            class="hamburger"
+            width="24"
+            height="12"
+            viewBox="0 0 24 12"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <line x1="0" y1="2" x2="24" y2="2"></line>
+            <line x1="0" y1="10" x2="24" y2="10"></line>
+          </svg>
+          <span class="menu-text">Menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <aside class="offcanvas" id="offcanvas" aria-hidden="true">
+      <div class="off-header">
+        <div class="off-title">Menu</div>
+        <button
+          class="off-close"
+          id="closeMenu"
+          type="button"
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>
+      <div class="off-body">
+        <ul class="off-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#why">Why</a></li>
+          <li><a href="#what">What</a></li>
+          <li><a href="#now">Now</a></li>
+          <li><a href="#vision">Vision</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <header class="about-hero" id="top">
+      <div class="about-hero-inner">
+        <h1>Good lives, in moving worlds.</h1>
+
+        <!-- ✅ (추가) data-i18n / data-ko / data-en 만 부착 (문장/구조 유지) -->
+        <p
+          data-i18n
+          data-ko='메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br />
+          정서 케어에서 시작해, 노마드 라이프의 기반을 하나의 앱으로 연결합니다.'
+          data-en='Merrygood helps people stay connected even while living on the move.<br />
+          Starting with emotional care, we connect the foundations of a nomadic life through a single app.'
+        >
+          메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br />
+          정서 케어에서 시작해, 노마드 라이프의 기반을 하나의 앱으로 연결합니다.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <!-- WHY -->
+      <section class="section-pad divider" id="why">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="우리가 보는 변화"
+                data-en="The shift we see"
+              >
+                우리가 보는 변화
+              </h2>
+
+              <p
+                class="lede"
+                data-i18n
+                data-ko='휴머노이드가 노동을 대체하고, 메타버스에서 아바타가 일하는
+                시대가 오면 사람은 더 자유롭게 이동할 수 있지만 동시에 더 쉽게
+                고립될 수 있습니다. 우리는 그 지점을 “다음 모빌리티의 문제”로
+                봅니다.'
+                data-en="As humanoids replace labor and avatars work in the metaverse, people may move more freely—yet become isolated more easily. We see that tension as the next problem mobility must solve."
+              >
+                휴머노이드가 노동을 대체하고, 메타버스에서 아바타가 일하는
+                시대가 오면 사람은 더 자유롭게 이동할 수 있지만 동시에 더 쉽게
+                고립될 수 있습니다. 우리는 그 지점을 “다음 모빌리티의 문제”로
+                봅니다.
+              </p>
+            </div>
+
+            <div class="note">
+              <p
+                data-i18n
+                data-ko='<strong>궁극의 모빌리티는</strong><br />
+                더 빨리 움직이는 것이 아니라<br />
+                <strong>움직이지 않아도 되는 상태</strong>에 가까워진다고
+                생각합니다.'
+                data-en="<strong>Ultimate mobility</strong><br />is not about moving faster,<br />but about getting closer to a state where<br /><strong>you don’t need to move at all</strong>."
+              >
+                <strong>궁극의 모빌리티는</strong><br />
+                더 빨리 움직이는 것이 아니라<br />
+                <strong>움직이지 않아도 되는 상태</strong>에 가까워진다고
+                생각합니다.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- WHAT -->
-    <section class="section-pad divider" id="what">
+      <!-- WHAT -->
+      <section class="section-pad divider" id="what">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="우리가 만드는 것"
+                data-en="What we’re building"
+              >
+                우리가 만드는 것
+              </h2>
+
+              <p
+                class="lede"
+                data-i18n
+                data-ko='3개월·6개월 단위의 프로젝트가 많아지고, 노마드 라이프가
+                보편화될수록 “살아갈 수 있는 시스템”이 필요해집니다. 메리굿은
+                정서 케어를 기반으로, 삶의 필수 요소를 하나로 묶습니다.'
+                data-en='As projects increasingly run in 3–6 month cycles and nomadic living becomes mainstream, we need a system that makes life sustainable. Merrygood bundles the essentials into one—grounded in emotional care.'
+              >
+                3개월·6개월 단위의 프로젝트가 많아지고, 노마드 라이프가
+                보편화될수록 “살아갈 수 있는 시스템”이 필요해집니다. 메리굿은
+                정서 케어를 기반으로, 삶의 필수 요소를 하나로 묶습니다.
+              </p>
+
+              <ul class="bullets" aria-label="Platform pillars">
+                <li
+                  data-i18n
+                  data-ko="<strong>Care</strong> — 여행자·노마드·출장자의 마음을 돌보는 정서 케어"
+                  data-en="<strong>Care</strong> — Emotional support for travelers, nomads, and business guests"
+                >
+                  <strong>Care</strong> — 여행자·노마드·출장자의 마음을 돌보는
+                  정서 케어
+                </li>
+                <li
+                  data-i18n
+                  data-ko="<strong>Work</strong> — 생존을 위한 긱잡(Gig Job) 연결"
+                  data-en="<strong>Work</strong> — Connecting gig work for everyday sustainability"
+                >
+                  <strong>Work</strong> — 생존을 위한 긱잡(Gig Job) 연결
+                </li>
+                <li
+                  data-i18n
+                  data-ko="<strong>Move &amp; Stay</strong> — 이동과 숙박을 한 흐름으로 해결"
+                  data-en="<strong>Move &amp; Stay</strong> — Seamless travel and accommodation in one flow"
+                >
+                  <strong>Move &amp; Stay</strong> — 이동과 숙박을 한 흐름으로
+                  해결
+                </li>
+              </ul>
+            </div>
+
+            <div class="note">
+              <p class="muted" style="margin: 0 0 10px">One app, everywhere.</p>
+
+              <p
+                style="margin: 0"
+                data-i18n
+                data-ko='메리굿 앱 하나면<br />
+                어디서든 <strong>이동</strong>하고,<br />
+                <strong>일</strong>하고,<br />
+                <strong>잠잘 곳</strong>을 해결할 수 있는 삶을 지향합니다.'
+                data-en='With a single Merrygood app,<br />
+                you can <strong>move</strong> anywhere,<br />
+                <strong>work</strong>, and<br />
+                find a <strong>place to stay</strong>—all in one flow.'
+              >
+                메리굿 앱 하나면<br />
+                어디서든 <strong>이동</strong>하고,<br />
+                <strong>일</strong>하고,<br />
+                <strong>잠잘 곳</strong>을 해결할 수 있는 삶을 지향합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOW -->
+      <section class="section-pad divider" id="now">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="지금, 첫 단추"
+                data-en="Now, the first step"
+              >
+                지금, 첫 단추
+              </h2>
+
+              <p
+                class="lede"
+                data-i18n
+                data-ko='우리는 첫 단계로 호텔 투숙객을 대상으로 정서 케어 서비스를
+                시작했습니다. 낯선 공간에서 하루를 마무리하는 사람들의 마음을
+                돌보는 일부터, 메리굿의 노마드 플랫폼이 확장됩니다.'
+                data-en='We began by providing emotional care for hotel guests. By caring for people as they end their day in unfamiliar spaces, Merrygood’s nomad platform begins to expand.'
+              >
+                우리는 첫 단계로 호텔 투숙객을 대상으로 정서 케어 서비스를
+                시작했습니다. 낯선 공간에서 하루를 마무리하는 사람들의 마음을
+                돌보는 일부터, 메리굿의 노마드 플랫폼이 확장됩니다.
+              </p>
+            </div>
+
+            <div class="note">
+              <p
+                style="margin: 0"
+                data-i18n
+                data-ko='작은 시작이지만 방향은 분명합니다.<br />
+                정서 케어 → 생활 기반(일/이동/숙박) →
+                <strong>글로벌 노마드 네트워크</strong>'
+                data-en='It’s a small start, but the direction is clear.<br />
+                Emotional care → Life foundations (work/move/stay) →
+                <strong>Global nomad network</strong>'
+              >
+                작은 시작이지만 방향은 분명합니다.<br />
+                정서 케어 → 생활 기반(일/이동/숙박) →
+                <strong>글로벌 노마드 네트워크</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISION -->
+      <section class="section-pad divider" id="vision">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="다음 단계"
+                data-en="Next"
+              >
+                다음 단계
+              </h2>
+
+              <p
+                class="lede"
+                data-i18n
+                data-ko='메리굿은 여행자, 노마드, 출장자들이 어디에 있든 덜 고립되고 더
+                연결될 수 있도록 돕는
+                <strong>글로벌 노마드 네트워크</strong>로 나아갑니다.'
+                data-en='Merrygood is moving toward a <strong>global nomad network</strong>—helping travelers, nomads, and business guests feel less isolated and more connected wherever they are.'
+              >
+                메리굿은 여행자, 노마드, 출장자들이 어디에 있든 덜 고립되고 더
+                연결될 수 있도록 돕는
+                <strong>글로벌 노마드 네트워크</strong>로 나아갑니다.
+              </p>
+
+              <div class="cta-row">
+                <a class="btn2 primary" href="index.html#about"
+                  >Back to main →</a
+                >
+                <a class="btn2" href="contact.html">Contact →</a>
+              </div>
+            </div>
+
+            <div class="note">
+              <p
+                style="margin: 0"
+                data-i18n
+                data-ko='<strong>Merrygood</strong>은 이름처럼<br />
+                즐겁고 좋은 기업이 되고 싶습니다.'
+                data-en='Like our name, <strong>Merrygood</strong><br />aims to be a joyful and genuinely good company.'
+              >
+                <strong>Merrygood</strong>은 이름처럼<br />
+                즐겁고 좋은 기업이 되고 싶습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
       <div class="container">
-        <div class="about-grid">
-          <div class="stack">
-            <h2 class="headline">우리가 만드는 것</h2>
-            <p class="lede">
-              3개월·6개월 단위의 프로젝트가 많아지고, 노마드 라이프가 보편화될수록
-              “살아갈 수 있는 시스템”이 필요해집니다.
-              메리굿은 정서 케어를 기반으로, 삶의 필수 요소를 하나로 묶습니다.
+        <div
+          class="footer-grid"
+          style="grid-template-columns: 1fr 1.2fr; gap: 40px"
+        >
+          <!-- Brand -->
+          <div class="footer-col">
+            <h5>Merrygood</h5>
+            <p style="color: var(--muted); max-width: 360px; line-height: 1.6">
+              Make a love story with your customers. We create meaningful brand
+              and digital experiences.
             </p>
 
-            <ul class="bullets" aria-label="Platform pillars">
-              <li><strong>Care</strong> — 여행자·노마드·출장자의 마음을 돌보는 정서 케어</li>
-              <li><strong>Work</strong> — 생존을 위한 긱잡(Gig Job) 연결</li>
-              <li><strong>Move &amp; Stay</strong> — 이동과 숙박을 한 흐름으로 해결</li>
+            <ul class="footer-links" style="margin-top: 14px">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#top">About</a></li>
+              <li><a href="#service">Service</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 
-          <div class="note">
-            <p class="muted" style="margin:0 0 10px;">One app, everywhere.</p>
-            <p style="margin:0;">
-              메리굿 앱 하나면<br/>
-              어디서든 <strong>이동</strong>하고,<br/>
-              <strong>일</strong>하고,<br/>
-              <strong>잠잘 곳</strong>을 해결할 수 있는 삶을 지향합니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NOW -->
-    <section class="section-pad divider" id="now">
-      <div class="container">
-        <div class="about-grid">
-          <div class="stack">
-            <h2 class="headline">지금, 첫 단추</h2>
-            <p class="lede">
-              우리는 첫 단계로 호텔 투숙객을 대상으로 정서 케어 서비스를 시작했습니다.
-              낯선 공간에서 하루를 마무리하는 사람들의 마음을 돌보는 일부터,
-              메리굿의 노마드 플랫폼이 확장됩니다.
-            </p>
-          </div>
-
-          <div class="note">
-            <p style="margin:0;">
-              작은 시작이지만 방향은 분명합니다.<br/>
-              정서 케어 → 생활 기반(일/이동/숙박) → <strong>글로벌 노마드 네트워크</strong>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISION -->
-    <section class="section-pad divider" id="vision">
-      <div class="container">
-        <div class="about-grid">
-          <div class="stack">
-            <h2 class="headline">다음 단계</h2>
-            <p class="lede">
-              메리굿은 여행자, 노마드, 출장자들이 어디에 있든
-              덜 고립되고 더 연결될 수 있도록 돕는
-              <strong>글로벌 노마드 네트워크</strong>로 나아갑니다.
+          <!-- Contact -->
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <p style="color: var(--muted); margin-bottom: 14px">
+              Have a project in mind?<br />
+              Let’s talk.
             </p>
 
-            <div class="cta-row">
-              <a class="btn2 primary" href="index.html#about">Back to main →</a>
-              <a class="btn2" href="contact.html">Contact →</a>
+            <!-- ✅ 파란색 유지 -->
+            <a href="contact.html" class="footer-btn">Get in touch →</a>
+
+            <div style="margin-top: 18px; color: var(--muted); font-size: 14px">
+              hello@merrygood.kr<br />
+              Seoul · Global
             </div>
           </div>
-
-          <div class="note">
-            <p style="margin:0;">
-              <strong>Merrygood</strong>은 이름처럼<br/>
-              즐겁고 좋은 기업이 되고 싶습니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid" style="grid-template-columns: 1fr 1.2fr; gap: 40px;">
-        <!-- Brand -->
-        <div class="footer-col">
-          <h5>Merrygood</h5>
-          <p style="color: var(--muted); max-width: 360px; line-height: 1.6;">
-            Make a love story with your customers.
-            We create meaningful brand and digital experiences.
-          </p>
-
-          <ul class="footer-links" style="margin-top: 14px;">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#top">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
         </div>
 
-        <!-- Contact -->
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <p style="color: var(--muted); margin-bottom: 14px;">
-            Have a project in mind?<br/>
-            Let’s talk.
-          </p>
-
-          <!-- ✅ 파란색 유지 -->
-          <a href="contact.html" class="footer-btn">Get in touch →</a>
-
-          <div style="margin-top: 18px; color: var(--muted); font-size: 14px;">
-            hello@merrygood.kr<br />
-            Seoul · Global
-          </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
+          <!-- <ul class="social" aria-label="Social links">
+            <li><a href="#" aria-label="Twitter">T</a></li>
+            <li><a href="#" aria-label="Instagram">I</a></li>
+            <li><a href="#" aria-label="Facebook">F</a></li>
+          </ul> -->
         </div>
       </div>
+    </footer>
 
-      <div class="footer-bottom">
-        <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
-        <ul class="social" aria-label="Social links">
-          <li><a href="#" aria-label="Twitter">T</a></li>
-          <li><a href="#" aria-label="Instagram">I</a></li>
-          <li><a href="#" aria-label="Facebook">F</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+    <script>
+      // ===== NAV hide/show on scroll (index와 동일) =====
+      let lastScrollTop = 0;
+      const navbar = document.querySelector(".navbar");
 
-  <script>
-    // ===== NAV hide/show on scroll (index와 동일) =====
-    let lastScrollTop = 0;
-    const navbar = document.querySelector(".navbar");
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
 
-    window.addEventListener("scroll", () => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+          navbar.classList.add("hide-navbar");
+          navbar.classList.remove("scrolled");
+        } else if (currentScroll < lastScrollTop && currentScroll > 50) {
+          navbar.classList.remove("hide-navbar");
+          navbar.classList.add("scrolled");
+        } else if (currentScroll <= 50) {
+          navbar.classList.remove("scrolled");
+        }
 
-      if (currentScroll > lastScrollTop && currentScroll > 50) {
-        navbar.classList.add("hide-navbar");
-        navbar.classList.remove("scrolled");
-      } else if (currentScroll < lastScrollTop && currentScroll > 50) {
-        navbar.classList.remove("hide-navbar");
-        navbar.classList.add("scrolled");
-      } else if (currentScroll <= 50) {
-        navbar.classList.remove("scrolled");
+        lastScrollTop = Math.max(currentScroll, 0);
+      });
+
+      // ===== Offcanvas (index와 동일) =====
+      const offcanvas = document.getElementById("offcanvas");
+      const backdrop = document.getElementById("backdrop");
+      const openBtn = document.getElementById("openMenu");
+      const closeBtn = document.getElementById("closeMenu");
+
+      function openMenu() {
+        offcanvas.classList.add("open");
+        offcanvas.setAttribute("aria-hidden", "false");
+        openBtn.setAttribute("aria-expanded", "true");
+
+        backdrop.hidden = false;
+        requestAnimationFrame(() => backdrop.classList.add("open"));
+
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
       }
 
-      lastScrollTop = Math.max(currentScroll, 0);
-    });
+      function closeMenu() {
+        offcanvas.classList.remove("open");
+        offcanvas.setAttribute("aria-hidden", "true");
+        openBtn.setAttribute("aria-expanded", "false");
 
-    // ===== Offcanvas (index와 동일) =====
-    const offcanvas = document.getElementById("offcanvas");
-    const backdrop = document.getElementById("backdrop");
-    const openBtn = document.getElementById("openMenu");
-    const closeBtn = document.getElementById("closeMenu");
+        backdrop.classList.remove("open");
+        setTimeout(() => {
+          backdrop.hidden = true;
+        }, 250);
 
-    function openMenu(){
-      offcanvas.classList.add("open");
-      offcanvas.setAttribute("aria-hidden", "false");
-      openBtn.setAttribute("aria-expanded", "true");
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+      }
 
-      backdrop.hidden = false;
-      requestAnimationFrame(() => backdrop.classList.add("open"));
+      openBtn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      backdrop.addEventListener("click", closeMenu);
 
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-    }
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && offcanvas.classList.contains("open"))
+          closeMenu();
+      });
 
-    function closeMenu(){
-      offcanvas.classList.remove("open");
-      offcanvas.setAttribute("aria-hidden", "true");
-      openBtn.setAttribute("aria-expanded", "false");
+      // 메뉴에서 섹션 이동 시 닫기 + 점프 스크롤 보정
+      document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", () => {
+          closeMenu();
+          setTimeout(() => {
+            const y = window.pageYOffset || document.documentElement.scrollTop;
+            if (y > 50) {
+              navbar.classList.add("hide-navbar");
+              navbar.classList.remove("scrolled");
+              lastScrollTop = y;
+            }
+          }, 60);
+        });
+      });
 
-      backdrop.classList.remove("open");
-      setTimeout(() => { backdrop.hidden = true; }, 250);
-
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    }
-
-    openBtn.addEventListener("click", openMenu);
-    closeBtn.addEventListener("click", closeMenu);
-    backdrop.addEventListener("click", closeMenu);
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && offcanvas.classList.contains("open")) closeMenu();
-    });
-
-    // 메뉴에서 섹션 이동 시 닫기 + 점프 스크롤 보정
-    document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
-      a.addEventListener("click", () => {
-        closeMenu();
+      window.addEventListener("hashchange", () => {
         setTimeout(() => {
           const y = window.pageYOffset || document.documentElement.scrollTop;
           if (y > 50) {
@@ -665,18 +975,39 @@
           }
         }, 60);
       });
-    });
 
-    window.addEventListener("hashchange", () => {
-      setTimeout(() => {
-        const y = window.pageYOffset || document.documentElement.scrollTop;
-        if (y > 50) {
-          navbar.classList.add("hide-navbar");
-          navbar.classList.remove("scrolled");
-          lastScrollTop = y;
+      // ===== ✅ (추가) 한글/영어 토글 로직만 추가 (기존 기능 영향 없음) =====
+      // - data-i18n 가진 요소만 바꿈
+      // - 원문은 data-ko, 번역은 data-en
+      // - 줄바꿈/strong 유지 위해 innerHTML 사용
+      (function () {
+        const btn = document.getElementById("langToggle");
+        const pill = document.getElementById("langPill");
+
+        function apply(mode) {
+          const m = mode === "ko" ? "ko" : "en";
+          document.documentElement.lang = m;
+
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const html = el.getAttribute(m === "ko" ? "data-ko" : "data-en");
+            if (typeof html === "string" && html.length) {
+              el.innerHTML = html;
+            }
+          });
+
+          if (pill) pill.textContent = m === "ko" ? "KR" : "EN";
+          localStorage.setItem("lang", m);
         }
-      }, 60);
-    });
-  </script>
-</body>
+
+        function toggle() {
+          const current = localStorage.getItem("lang") || "en";
+          apply(current === "ko" ? "en" : "ko");
+        }
+
+        // 기본: EN (영어 선호)
+        apply(localStorage.getItem("lang") || "en");
+        btn && btn.addEventListener("click", toggle);
+      })();
+    </script>
+  </body>
 </html>
