@@ -1,31 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Merrygood — About</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Fonts: Lora (EN headline) + Noto Sans KR (KR body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root{
       --nav-h: 80px;
       --container: 1200px;
+
       --text: #111;
       --muted: #6b7280;
       --bg: #fff;
+
       --shadow: 0 10px 30px rgba(0,0,0,.12);
       --radius-lg: 22px;
+
+      /* HERO (설명은 살짝 크게) */
+      --hero-body: 17px;
+      --hero-lh: 1.8;
+
+      /* CONTENT (조잡/투박함 방지) */
+      --body: 15px;
+      --body-lh: 1.75;
+
+      /* SMALL (캡션/서브카피) */
+      --body-sm: 13px;
+      --body-sm-lh: 1.6;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif; color: var(--text); background: var(--bg); }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      word-break: keep-all;
+    }
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; display: block; }
+    .container{ width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
 
     /* ===== NAV (index와 동일) ===== */
     .navbar{
@@ -78,7 +105,6 @@
       align-items: center;
       justify-content: center;
       gap: 18px;
-
       z-index: 9999;
       isolation: isolate;
       mix-blend-mode: normal;
@@ -109,10 +135,7 @@
       transition: opacity .25s ease;
       z-index: 60;
     }
-    .backdrop.open{
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .backdrop.open{ opacity: 1; pointer-events: auto; }
 
     .offcanvas{
       position: fixed;
@@ -159,9 +182,9 @@
     }
     .off-nav a:hover{ background: rgba(255,255,255,.12); }
 
-    /* ===== ABOUT HERO (미니멀) ===== */
+    /* ===== ABOUT HERO ===== */
     .about-hero{
-      min-height: 80vh;
+      min-height: 100vh;
       background-image: url("image/map.jpg");
       background-size: cover;
       background-position: center;
@@ -179,8 +202,9 @@
     .about-hero-inner{
       position: relative;
       padding-top: var(--nav-h);
-      width: min(980px, calc(100% - 32px));
-      text-align: left;
+      width: min(900px, calc(100% - 32px));
+      text-align: center;
+      margin: 0 auto;
     }
     .about-hero-inner h1{
       font-family: "Lora", serif;
@@ -192,24 +216,17 @@
       letter-spacing: .1px;
     }
     .about-hero-inner p{
-      margin: 0;
+      margin: 0 auto;
       color: rgba(255,255,255,.86);
-      font-size: 18px;
-      line-height: 1.85;
       max-width: 720px;
-    }
-    .about-hero-inner .micro{
-      margin-top: 18px;
-      color: rgba(255,255,255,.7);
-      font-size: 14px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+      font-size: var(--hero-body);
+      line-height: var(--hero-lh);
+      letter-spacing: -0.01em;
     }
 
-    /* ===== CONTENT (촌스러움 방지: 짧게, 여백 크게, 카드 최소) ===== */
+    /* ===== CONTENT ===== */
     .section-pad{ padding: 70px 0; }
     .divider{ border-top: 1px solid rgba(0,0,0,.08); }
-    .stack{ display: grid; gap: 18px; }
 
     .about-grid{
       display: grid;
@@ -221,27 +238,39 @@
       .about-grid{ grid-template-columns: 1.2fr .8fr; }
     }
 
+    .stack{ display: grid; gap: 18px; }
+
     .headline{
       font-size: 28px;
       line-height: 1.25;
       margin: 0;
       font-weight: 850;
-      letter-spacing: -.2px;
+      letter-spacing: -0.2px;
     }
-    .lede{
-      margin: 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.9;
+
+    .lede,
+    .note p,
+    .bullets li{
+      font-size: var(--body);
+      line-height: var(--body-lh);
+      letter-spacing: -0.01em;
     }
+
+    .lede{ margin: 0; color: var(--muted); }
 
     .note{
       background: #f3f4f6;
       border-radius: var(--radius-lg);
       padding: 22px;
     }
-    .note p{ margin: 0; color: #111; line-height: 1.9; }
-    .note .muted{ color: var(--muted); }
+    .note p{ margin: 0; color: #111; }
+
+    .note .muted{
+      color: var(--muted);
+      font-size: var(--body-sm);
+      line-height: var(--body-sm-lh);
+      letter-spacing: 0.02em;
+    }
 
     .bullets{
       list-style: none;
@@ -255,7 +284,6 @@
       border-radius: 14px;
       border: 1px solid rgba(0,0,0,.08);
       background: #fff;
-      line-height: 1.7;
       color: #111;
     }
     .bullets strong{ font-weight: 800; }
@@ -267,6 +295,8 @@
       align-items: center;
       margin-top: 8px;
     }
+
+    /* ✅ About 전용 버튼(검정) - footer랑 클래스 충돌 없음 */
     .btn2{
       display: inline-flex;
       align-items: center;
@@ -286,7 +316,7 @@
     }
     .btn2.primary:hover{ background: #333; }
 
-    /* ===== FOOTER (index와 동일) ===== */
+    /* ===== FOOTER (index 톤 유지) ===== */
     footer{
       padding: 56px 0 18px;
       border-top: 1px solid rgba(0,0,0,.08);
@@ -308,29 +338,21 @@
     .footer-links a{ color: var(--muted); }
     .footer-links a:hover{ color: var(--text); }
 
-    .newsletter p{ margin: 8px 0 14px; color: var(--muted); }
-    .newsletter-row{
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .input{
-      flex: 1;
-      min-width: 180px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.14);
-      outline: none;
-    }
-    .primary{
-      padding: 10px 14px;
-      border-radius: 12px;
+    /* ✅ 파란 Get in touch 버튼: footer 전용 클래스 */
+    .footer-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
       border: 0;
       background: #2563eb;
       color: #fff;
       cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
     }
-    .primary:hover{ filter: brightness(.95); }
+    .footer-btn:hover{ filter: brightness(.95); }
 
     .footer-bottom{
       margin-top: 34px;
@@ -369,7 +391,7 @@
 </head>
 
 <body>
-  <!-- NAV (그대로) -->
+  <!-- NAV -->
   <nav class="navbar" aria-label="Global Navigation">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
@@ -404,10 +426,9 @@
     </div>
   </aside>
 
-  <!-- HERO (과한 문구/카드 제거, 짧고 선명하게) -->
+  <!-- HERO -->
   <header class="about-hero" id="top">
     <div class="about-hero-inner">
-      <div class="micro">About Merrygood</div>
       <h1>Good lives, in moving worlds.</h1>
       <p>
         메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br/>
@@ -456,14 +477,12 @@
             <ul class="bullets" aria-label="Platform pillars">
               <li><strong>Care</strong> — 여행자·노마드·출장자의 마음을 돌보는 정서 케어</li>
               <li><strong>Work</strong> — 생존을 위한 긱잡(Gig Job) 연결</li>
-              <li><strong>Move & Stay</strong> — 이동과 숙박을 한 흐름으로 해결</li>
+              <li><strong>Move &amp; Stay</strong> — 이동과 숙박을 한 흐름으로 해결</li>
             </ul>
           </div>
 
           <div class="note">
-            <p class="muted" style="margin:0 0 10px;">
-              One app, everywhere.
-            </p>
+            <p class="muted" style="margin:0 0 10px;">One app, everywhere.</p>
             <p style="margin:0;">
               메리굿 앱 하나면<br/>
               어디서든 <strong>이동</strong>하고,<br/>
@@ -486,12 +505,6 @@
               낯선 공간에서 하루를 마무리하는 사람들의 마음을 돌보는 일부터,
               메리굿의 노마드 플랫폼이 확장됩니다.
             </p>
-
-            <div class="cta-row">
-              <a class="btn2 primary" href="index.html#about">Back to main →</a>
-              <!-- 실제 소개서/문의 링크로 바꿔도 됨 -->
-              <a class="btn2" href="mailto:hello@merrygood.kr">Contact →</a>
-            </div>
           </div>
 
           <div class="note">
@@ -515,11 +528,16 @@
               덜 고립되고 더 연결될 수 있도록 돕는
               <strong>글로벌 노마드 네트워크</strong>로 나아갑니다.
             </p>
+
+            <div class="cta-row">
+              <a class="btn2 primary" href="index.html#about">Back to main →</a>
+              <a class="btn2" href="contact.html">Contact →</a>
+            </div>
           </div>
 
           <div class="note">
             <p style="margin:0;">
-              <strong>Merrygood</strong>는 이름처럼<br/>
+              <strong>Merrygood</strong>은 이름처럼<br/>
               즐겁고 좋은 기업이 되고 싶습니다.
             </p>
           </div>
@@ -528,62 +546,52 @@
     </section>
   </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid" style="grid-template-columns: 1fr 1.2fr; gap: 40px;">
-      
-      <!-- Brand -->
-      <div class="footer-col">
-        <h5>Merrygood</h5>
-        <p style="color: var(--muted); max-width: 360px; line-height: 1.6;">
-          Make a love story with your customers.  
-          We create meaningful brand and digital experiences.
-        </p>
+  <footer>
+    <div class="container">
+      <div class="footer-grid" style="grid-template-columns: 1fr 1.2fr; gap: 40px;">
+        <!-- Brand -->
+        <div class="footer-col">
+          <h5>Merrygood</h5>
+          <p style="color: var(--muted); max-width: 360px; line-height: 1.6;">
+            Make a love story with your customers.
+            We create meaningful brand and digital experiences.
+          </p>
 
-        <ul class="footer-links" style="margin-top: 14px;">
-          <li><a href="/">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
+          <ul class="footer-links" style="margin-top: 14px;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#top">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
 
-      <!-- Contact -->
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <p style="color: var(--muted); margin-bottom: 14px;">
-          Have a project in mind?  
-          Let’s talk.
-        </p>
+        <!-- Contact -->
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <p style="color: var(--muted); margin-bottom: 14px;">
+            Have a project in mind?<br/>
+            Let’s talk.
+          </p>
 
-        <a href="contact.html" class="primary" style="
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 12px 18px;
-          border-radius: 999px;
-          text-decoration: none;
-        ">
-          Get in touch →
-        </a>
+          <!-- ✅ 파란색 유지 -->
+          <a href="contact.html" class="footer-btn">Get in touch →</a>
 
-        <div style="margin-top: 18px; color: var(--muted); font-size: 14px;">
-          hello@merrygood.kr<br />
-          Seoul · Global
+          <div style="margin-top: 18px; color: var(--muted); font-size: 14px;">
+            hello@merrygood.kr<br />
+            Seoul · Global
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
-      <ul class="social" aria-label="Social links">
-        <li><a href="#" aria-label="Twitter">T</a></li>
-        <li><a href="#" aria-label="Instagram">I</a></li>
-        <li><a href="#" aria-label="Facebook">F</a></li>
-      </ul>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
+        <ul class="social" aria-label="Social links">
+          <li><a href="#" aria-label="Twitter">T</a></li>
+          <li><a href="#" aria-label="Instagram">I</a></li>
+          <li><a href="#" aria-label="Facebook">F</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     // ===== NAV hide/show on scroll (index와 동일) =====
@@ -644,7 +652,7 @@
       if (e.key === "Escape" && offcanvas.classList.contains("open")) closeMenu();
     });
 
-    // 메뉴에서 섹션 이동 시 닫기 + 점프 스크롤 보정(네가 겪던 이슈 방지)
+    // 메뉴에서 섹션 이동 시 닫기 + 점프 스크롤 보정
     document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
       a.addEventListener("click", () => {
         closeMenu();
