@@ -938,8 +938,8 @@
         applyLang(next);
       }
 
-      // 기본값: EN (영어가 더 이쁘다고 했으니까)
-      applyLang(localStorage.getItem("lang") || "en");
+      // 기본값: KR 
+      applyLang(localStorage.getItem("lang") || "ko");
       langToggleBtn?.addEventListener("click", toggleLang);
     </script>
   </body>

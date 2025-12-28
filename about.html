@@ -1004,8 +1004,8 @@
           apply(current === "ko" ? "en" : "ko");
         }
 
-        // 기본: EN (영어 선호)
-        apply(localStorage.getItem("lang") || "en");
+        // 기본: KR
+        apply(localStorage.getItem("lang") || "ko");
         btn && btn.addEventListener("click", toggle);
       })();
     </script>
