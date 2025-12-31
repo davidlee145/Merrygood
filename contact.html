@@ -13,66 +13,22 @@
       </p>
 
       <!-- ✅ Formspree 연결 -->
-      <form action="https://formspree.io/f/mjgkbany" method="POST">
-        <input
-          name="name"
-          placeholder="Name"
-          style="width: 100%; padding: 14px; margin-bottom: 14px"
-          required
-        />
+     <form action="https://formspree.io/f/mjgkbany" method="POST">
+  <input name="name" placeholder="Name" style="width:100%; padding:14px; margin-bottom:14px;" required>
+  <input name="email" type="email" placeholder="Email" style="width:100%; padding:14px; margin-bottom:14px;" required>
+  <input name="company" placeholder="Company (optional)" style="width:100%; padding:14px; margin-bottom:14px;">
+  <textarea name="message" placeholder="Tell us about your project"
+    style="width:100%; padding:14px; height:140px; margin-bottom:20px;" required></textarea>
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          style="width: 100%; padding: 14px; margin-bottom: 14px"
-          required
-        />
+  <input type="hidden" name="_subject" value="Contact from Merrygood website">
+  <input type="text" name="_gotcha" style="display:none">
 
-        <input
-          name="company"
-          placeholder="Company (optional)"
-          style="width: 100%; padding: 14px; margin-bottom: 14px"
-        />
-
-        <textarea
-          name="message"
-          placeholder="Tell us about your project"
-          style="width: 100%; padding: 14px; height: 140px; margin-bottom: 20px"
-          required
-        ></textarea>
-
-        <!-- ✅ 이메일 제목 -->
-        <input
-          type="hidden"
-          name="_subject"
-          value="Contact from Merrygood website"
-        />
-
-        <!-- ✅ 스팸봇 방지 (허니팟) -->
-        <input type="text" name="_gotcha" style="display: none" />
-
-        <!-- 전송 후 리다이렉트 -->
-        <input
-          type="hidden"
-          name="_redirect"
-          value="https://merrygood.kr/thanks.html"
-        />
-
-        <button
-          type="submit"
-          style="
-            padding: 14px 24px;
-            border-radius: 999px;
-            border: 0;
-            background: #000;
-            color: #fff;
-            cursor: pointer;
-          "
-        >
-          Send message →
-        </button>
-      </form>
+  <button type="submit" style="
+    padding:14px 24px; border-radius:999px; border:0;
+    background:#000; color:#fff; cursor:pointer;">
+    Send message →
+  </button>
+</form>
 
       <p style="margin-top: 32px; color: #6b7280">
         Or email us directly at <strong>hello@merrygood.kr</strong>
