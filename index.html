@@ -643,7 +643,7 @@
           type="button"
           aria-label="Toggle language"
         >
-          <span class="lang-pill" id="langPill">EN</span>
+          <span class="lang-pill" id="langPill">KR</span>
         </button>
 
         <button
@@ -695,7 +695,12 @@
 
     <main class="main-section">
       <section class="hero">
-        <h1 class="hero-title text-animated">
+        <h1
+          class="hero-title text-animated"
+          data-i18n
+          data-ko="Make a love story with your customers"
+          data-en="Make a love story with your customers"
+        >
           Make a love story with your customers
         </h1>
       </section>
@@ -723,12 +728,21 @@
             <div class="pause-text-inner">
               <h2>Pause on the Way</h2>
 
-              <!-- ✅ (수정) 한글 요소만 data-i18n 부여 -->
-              <p class="tagline" data-i18n="ko.pause.tagline">
+              <p
+                class="tagline"
+                data-i18n
+                data-ko="낯선 길 위에서도 멈추어 쉬다"
+                data-en="Pause and rest, even on unfamiliar roads"
+              >
                 낯선 길 위에서도 멈추어 쉬다
               </p>
 
-              <p class="desc" data-i18n="ko.pause.desc">
+              <p
+                class="desc"
+                data-i18n
+                data-ko="Pause on the Way는 여행자·노마드·출장자를 위한 호텔 정서 케어 서비스입니다. 투숙 중 편안한 라운지 또는 카페에서, 검증된 케어러가 가벼운 대화로 마음의 여백을 만들어 드립니다."
+                data-en="Pause on the Way is a hotel-based emotional wellbeing service for travelers, nomads, and business guests. During your stay, meet a vetted carer for a light conversation in a cozy lounge or cafe and make room in your mind."
+              >
                 Pause on the Way는 여행자·노마드·출장자를 위한 호텔 정서 케어
                 서비스입니다. 투숙 중 편안한 라운지 또는 카페에서, 검증된
                 케어러가 가벼운 대화로 마음의 여백을 만들어 드립니다.
@@ -801,9 +815,37 @@
           </div>
         </div>
 
-        <!-- Bottom -->
         <div class="footer-bottom">
-          <p>&copy; 2025 Merrygood Co., Ltd. All rights reserved.</p>
+          <!-- 왼쪽 -->
+          <p style="margin: 0">
+            &copy; 2025 Merrygood Co., Ltd.
+            <span
+              data-i18n
+              data-ko="All rights reserved."
+              data-en="All rights reserved."
+            >
+              All rights reserved.
+            </span>
+          </p>
+
+          <!-- 오른쪽 -->
+          <p
+            style="
+              margin: 0;
+              font-size: 13px;
+              line-height: 1.6;
+              text-align: right;
+              max-width: 720px;
+            "
+            data-i18n
+            data-ko="사업자등록번호 : 494-81-03292 | 주식회사 메리굿 | 대표 : 이경원 | 전화 : 070-8080-4224 <br /> 주소 : 서울특별시 강서구 마곡중앙6로 11, 314-14호(마곡동, 보타닉파크타워3)"
+            data-en="Biz reg. no : 494-81-03292 | Merrygood Co., Ltd | CEO : Kyoung-Won Lee | Phone : 070-8080-4224 <br /> Address : 314-14-ho, 11 Magokjungang 6-ro, Gangseo-gu, Seoul, 07801, Republic of Korea (Botanic Park Tower 3)"
+          >
+            사업자등록번호 : 494-81-03292 | 주식회사 메리굿 | 대표 : 이경원 |
+            전화 : 070-8080-4224 <br />
+            주소 : 서울특별시 강서구 마곡중앙6로 11, 314-14호(마곡동,
+            보타닉파크타워3)
+          </p>
         </div>
       </div>
     </footer>
@@ -900,20 +942,7 @@
         }, 50);
       });
 
-      // ===== ✅ 한글만 EN으로 번역 + KR/EN 토글 =====
-      // EN = 영어(한글 번역본), KR = 원래 한글
-      const KO_TEXT = {
-        "ko.pause.tagline": "낯선 길 위에서도 멈추어 쉬다",
-        "ko.pause.desc":
-          "Pause on the Way는 여행자·노마드·출장자를 위한 호텔 정서 케어 서비스입니다. 투숙 중 편안한 라운지 또는 카페에서, 검증된 케어러가 가벼운 대화로 마음의 여백을 만들어 드립니다.",
-      };
-
-      const EN_TEXT = {
-        "ko.pause.tagline": "Pause and rest, even on unfamiliar roads",
-        "ko.pause.desc":
-          "Pause on the Way is a hotel-based emotional wellbeing service for travelers, nomads, and business guests. During your stay, meet a vetted carer for a light conversation in a cozy lounge or cafe and make room in your mind.",
-      };
-
+      // ===== ✅ 공통 언어 토글 (About 방식) =====
       const langToggleBtn = document.getElementById("langToggle");
       const langPill = document.getElementById("langPill");
 
@@ -921,11 +950,11 @@
         const mode = lang === "ko" ? "ko" : "en";
         document.documentElement.lang = mode;
 
-        // ✅ data-i18n 붙은 "한글 요소"만 바꾼다
         document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.getAttribute("data-i18n");
-          const txt = mode === "ko" ? KO_TEXT[key] : EN_TEXT[key];
-          if (typeof txt === "string") el.textContent = txt;
+          const html = el.getAttribute(mode === "ko" ? "data-ko" : "data-en");
+          if (typeof html === "string") {
+            el.innerHTML = html; // ✅ <br /> 유지
+          }
         });
 
         if (langPill) langPill.textContent = mode === "ko" ? "KR" : "EN";
@@ -933,12 +962,11 @@
       }
 
       function toggleLang() {
-        const current = localStorage.getItem("lang") || "en";
-        const next = current === "ko" ? "en" : "ko";
-        applyLang(next);
+        const current = localStorage.getItem("lang") || "ko";
+        applyLang(current === "ko" ? "en" : "ko");
       }
 
-      // 기본값: KR
+      // 기본값 KR
       applyLang(localStorage.getItem("lang") || "ko");
       langToggleBtn?.addEventListener("click", toggleLang);
     </script>
