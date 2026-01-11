@@ -2,10 +2,10 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>메리굿(Merrygood) | 글로벌 노마드 라이프스타일 브랜드</title>
+    <title>메리굿 | 글로벌 노마드 라이프스타일 브랜드</title>
     <meta
       name="description"
-      content="메리굿(Merrygood)은 글로벌 노마드 라이프스타일을 기반으로 브랜드와 고객의 연결을 설계하는 브랜드·디지털 경험 스튜디오입니다."
+      content="메리굿은 글로벌 노마드 라이프스타일을 기반으로 브랜드와 고객의 연결을 설계하는 브랜드·디지털 경험 스튜디오입니다."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -948,6 +948,25 @@
       const langToggleBtn = document.getElementById("langToggle");
       const langPill = document.getElementById("langPill");
 
+      const META = {
+        ko: {
+          title: "메리굿 | 글로벌 노마드 라이프스타일 브랜드",
+          desc: "메리굿은 글로벌 노마드 라이프스타일을 기반으로 브랜드와 고객의 연결을 설계하는 브랜드·디지털 경험 스튜디오입니다.",
+        },
+        en: {
+          title: "Merrygood | A Global Nomadic Lifestyle Brand",
+          desc: "Merrygood is a brand and digital experience studio designing meaningful connections between brands and global nomads.",
+        },
+      };
+
+      function updateMeta(lang) {
+        const m = META[lang];
+        document.title = m.title;
+        document
+          .querySelector('meta[name="description"]')
+          ?.setAttribute("content", m.desc);
+      }
+
       function applyLang(lang) {
         const mode = lang === "ko" ? "ko" : "en";
         document.documentElement.lang = mode;
@@ -961,6 +980,8 @@
 
         if (langPill) langPill.textContent = mode === "ko" ? "KR" : "EN";
         localStorage.setItem("lang", mode);
+
+        updateMeta(mode);
       }
 
       function toggleLang() {

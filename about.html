@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>메리굿(Merrygood) | 글로벌 노마드 네트워크 — Care, Work, Move & Stay</title>
+    <title>메리굿 | 글로벌 노마드 네트워크</title>
     <meta
       name="description"
-      content="메리굿(Merrygood)은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕는 글로벌 노마드 네트워크입니다. 정서 케어를 시작으로 일, 이동, 숙박을 하나의 플랫폼으로 연결합니다."
+      content="메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다. 정서 케어에서 시작해, 노마드 라이프의 기반을 하나로 잇습니다."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -983,6 +983,25 @@
         const btn = document.getElementById("langToggle");
         const pill = document.getElementById("langPill");
 
+        const META = {
+          ko: {
+            title: "메리굿 | 글로벌 노마드 네트워크",
+            desc: "메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다. 정서 케어에서 시작해, 노마드 라이프의 기반을 하나로 잇습니다.",
+          },
+          en: {
+            title: "Merrygood | Global Nomad Network",
+            desc: "Merrygood helps people stay connected even while living a mobile life. Starting with emotional care, we connect the foundations of the nomadic lifestyle.",
+          },
+        };
+
+        function updateMeta(lang) {
+          const m = META[lang];
+          document.title = m.title;
+          document
+            .querySelector('meta[name="description"]')
+            ?.setAttribute("content", m.desc);
+        }
+
         function apply(mode) {
           const m = mode === "ko" ? "ko" : "en";
           document.documentElement.lang = m;
@@ -996,6 +1015,8 @@
 
           if (pill) pill.textContent = m === "ko" ? "KR" : "EN";
           localStorage.setItem("lang", m);
+
+          updateMeta(m);
         }
 
         function toggle() {
