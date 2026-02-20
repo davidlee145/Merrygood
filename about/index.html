@@ -1,6 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-HYJ3E7YM7M"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-HYJ3E7YM7M");
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>메리굿 | 글로벌 노마드 네트워크</title>
@@ -48,8 +62,14 @@
       }
       body {
         margin: 0;
-        font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto,
-          Arial, sans-serif;
+        font-family:
+          "Noto Sans KR",
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
         color: var(--text);
         background: var(--bg);
         font-weight: 400;
@@ -81,7 +101,9 @@
         align-items: center;
         z-index: 50;
         background: rgba(0, 0, 0, 0);
-        transition: top 0.7s ease, background-color 0.25s ease,
+        transition:
+          top 0.7s ease,
+          background-color 0.25s ease,
           box-shadow 0.25s ease;
       }
       .navbar.scrolled {
