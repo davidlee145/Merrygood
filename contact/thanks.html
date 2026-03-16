@@ -1,33 +1,100 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Thanks — Merrygood</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body style="padding:120px 16px; max-width:720px; margin:0 auto;">
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Thank you — Merrygood</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <h1 style="font-size:36px; margin-bottom:12px;">
-    Message received.
-  </h1>
+    <style>
+      body {
+        font-family:
+          "Noto Sans KR",
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        margin: 0;
+      }
 
-  <p style="color:#6b7280; line-height:1.6;">
-    Thanks for reaching out.<br>
-    We’ll get back to you shortly.
-  </p>
+      .container {
+        padding: 140px 16px;
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+      }
 
-  <a
-    href="/"
-    style="
-      display:inline-block;
-      margin-top:32px;
-      color:#000;
-      text-decoration:none;
-      font-weight:600;
-    "
-  >
-    Back to home →
-  </a>
+      h1 {
+        font-size: 42px;
+        margin-bottom: 14px;
+      }
 
-</body>
+      p {
+        color: #6b7280;
+        margin-bottom: 32px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 24px;
+        border-radius: 999px;
+        background: #000;
+        color: #fff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <h1
+        data-i18n
+        data-ko="메시지가 전송되었습니다"
+        data-en="Message sent successfully"
+      >
+        메시지가 전송되었습니다
+      </h1>
+
+      <p
+        data-i18n
+        data-ko="곧 연락드리겠습니다."
+        data-en="We'll get back to you shortly."
+      >
+        곧 연락드리겠습니다.
+      </p>
+
+      <a
+        class="btn"
+        href="/"
+        data-i18n
+        data-ko="메인으로 돌아가기"
+        data-en="Back to home"
+      >
+        메인으로 돌아가기
+      </a>
+    </main>
+
+    <script>
+      function getLang() {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = params.get("lang");
+
+        if (urlLang) return urlLang;
+
+        return localStorage.getItem("lang") || "ko";
+      }
+
+      function applyLang(lang) {
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const text = el.getAttribute(lang === "ko" ? "data-ko" : "data-en");
+          if (text) el.innerHTML = text;
+        });
+      }
+
+      applyLang(getLang());
+    </script>
+  </body>
 </html>

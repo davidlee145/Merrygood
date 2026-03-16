@@ -17,10 +17,11 @@
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>메리굿 | 글로벌 노마드 네트워크</title>
+    <title>About | Merrygood</title>
+
     <meta
       name="description"
-      content="메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다. 정서 케어에서 시작해, 노마드 라이프의 기반을 하나로 잇습니다."
+      content="Learn about Merrygood, a global nomad network helping travelers and mobile lives stay connected."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,32 +34,21 @@
       :root {
         --nav-h: 80px;
         --container: 1200px;
-
         --text: #111;
         --muted: #6b7280;
         --bg: #fff;
-
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         --radius-lg: 22px;
-
-        /* HERO (설명은 살짝 크게) */
-        --hero-body: 17px;
-        --hero-lh: 1.8;
-
-        /* CONTENT (조잡/투박함 방지) */
         --body: 15px;
         --body-lh: 1.75;
-
-        /* SMALL (캡션/서브카피) */
         --body-sm: 13px;
         --body-sm-lh: 1.6;
+        --hero-body: 17px; /* add */
+        --hero-lh: 1.8; /* add */
       }
 
       * {
         box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
       }
       body {
         margin: 0;
@@ -72,10 +62,10 @@
           sans-serif;
         color: var(--text);
         background: var(--bg);
-        font-weight: 400;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
         word-break: keep-all;
+        font-weight: 400; /* add */
       }
       a {
         color: inherit;
@@ -90,7 +80,7 @@
         margin: 0 auto;
       }
 
-      /* ===== NAV (index와 동일) ===== */
+      /* ===== NAV ===== */
       .navbar {
         position: fixed;
         top: 0;
@@ -113,7 +103,6 @@
       .navbar.hide-navbar {
         top: calc(var(--nav-h) * -1.35);
       }
-
       .nav-inner {
         width: 100%;
         height: 100%;
@@ -123,7 +112,6 @@
         padding: 0;
         position: relative;
       }
-
       .brand {
         position: absolute;
         top: 0;
@@ -139,6 +127,47 @@
         width: auto;
       }
 
+      /* ===== LANGUAGE TOGGLE ===== */
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 150px;
+        height: var(--nav-h);
+        width: 96px;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        line-height: 1;
+      }
+      .navbar.scrolled .lang-toggle {
+        color: #111;
+      }
+      .lang-toggle:hover {
+        opacity: 0.82;
+      }
+      .lang-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(0, 0, 0, 0.14);
+        backdrop-filter: blur(6px);
+      }
+      .navbar.scrolled .lang-pill {
+        border-color: rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      /* ===== MENU BUTTON ===== */
       .menu-btn {
         position: absolute;
         top: 0;
@@ -161,7 +190,6 @@
       .menu-btn:hover {
         background: #333;
       }
-
       .hamburger {
         display: block;
         shape-rendering: crispEdges;
@@ -178,7 +206,7 @@
         letter-spacing: 0.3px;
       }
 
-      /* ===== OFFCANVAS (index와 동일) ===== */
+      /* ===== OFFCANVAS ===== */
       .backdrop {
         position: fixed;
         inset: 0;
@@ -303,7 +331,6 @@
       .divider {
         border-top: 1px solid rgba(0, 0, 0, 0.08);
       }
-
       .about-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -315,12 +342,10 @@
           grid-template-columns: 1.2fr 0.8fr;
         }
       }
-
       .stack {
         display: grid;
         gap: 18px;
       }
-
       .headline {
         font-size: 28px;
         line-height: 1.25;
@@ -328,7 +353,6 @@
         font-weight: 850;
         letter-spacing: -0.2px;
       }
-
       .lede,
       .note p,
       .bullets li {
@@ -336,12 +360,10 @@
         line-height: var(--body-lh);
         letter-spacing: -0.01em;
       }
-
       .lede {
         margin: 0;
         color: var(--muted);
       }
-
       .note {
         background: #f3f4f6;
         border-radius: var(--radius-lg);
@@ -351,14 +373,12 @@
         margin: 0;
         color: #111;
       }
-
       .note .muted {
         color: var(--muted);
         font-size: var(--body-sm);
         line-height: var(--body-sm-lh);
         letter-spacing: 0.02em;
       }
-
       .bullets {
         list-style: none;
         padding: 0;
@@ -376,7 +396,6 @@
       .bullets strong {
         font-weight: 800;
       }
-
       .cta-row {
         display: flex;
         gap: 12px;
@@ -384,8 +403,6 @@
         align-items: center;
         margin-top: 8px;
       }
-
-      /* ✅ About 전용 버튼(검정) - footer랑 클래스 충돌 없음 */
       .btn2 {
         display: inline-flex;
         align-items: center;
@@ -409,7 +426,7 @@
         background: #333;
       }
 
-      /* ===== FOOTER (index 톤 유지) ===== */
+      /* ===== FOOTER ===== */
       footer {
         padding: 56px 0 18px;
         border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -443,8 +460,6 @@
       .footer-links a:hover {
         color: var(--text);
       }
-
-      /* ✅ 파란 Get in touch 버튼: footer 전용 클래스 */
       .footer-btn {
         display: inline-flex;
         align-items: center;
@@ -461,7 +476,6 @@
       .footer-btn:hover {
         filter: brightness(0.95);
       }
-
       .footer-bottom {
         margin-top: 34px;
         padding-top: 18px;
@@ -498,50 +512,6 @@
           transition: none !important;
           animation: none !important;
         }
-        html {
-          scroll-behavior: auto;
-        }
-      }
-
-      /* ===== ✅ (추가) Language toggle 스타일: 기존 영향 최소 ===== */
-      .lang-toggle {
-        position: absolute;
-        top: 0;
-        right: 150px; /* menu-btn width */
-        height: var(--nav-h);
-        width: 96px;
-        border: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        background: rgba(0, 0, 0, 0);
-        color: #fff;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: 0.6px;
-        line-height: 1;
-      }
-      .navbar.scrolled .lang-toggle {
-        color: #111;
-      }
-      .lang-toggle:hover {
-        opacity: 0.82;
-      }
-      .lang-pill {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        background: rgba(0, 0, 0, 0.14);
-        backdrop-filter: blur(6px);
-      }
-      .navbar.scrolled .lang-pill {
-        border-color: rgba(0, 0, 0, 0.12);
-        background: rgba(255, 255, 255, 0.8);
       }
     </style>
   </head>
@@ -554,14 +524,13 @@
           <img src="/image/logo.png" alt="Merrygood" />
         </a>
 
-        <!-- ✅ (추가) Language toggle 버튼만 추가 (기존 구조 유지) -->
         <button
           class="lang-toggle"
           id="langToggle"
           type="button"
           aria-label="Toggle language"
         >
-          <span class="lang-pill" id="langPill">EN</span>
+          <span class="lang-pill" id="langPill">KR</span>
         </button>
 
         <button
@@ -616,8 +585,6 @@
     <header class="about-hero" id="top">
       <div class="about-hero-inner">
         <h1>Good lives, in moving worlds.</h1>
-
-        <!-- ✅ (추가) data-i18n / data-ko / data-en 만 부착 (문장/구조 유지) -->
         <p
           data-i18n
           data-ko="메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br />
@@ -812,8 +779,24 @@
               </p>
 
               <div class="cta-row">
-                <a class="btn2 primary" href="/">Back to main →</a>
-                <a class="btn2" href="/contact">Contact →</a>
+                <a
+                  class="btn2 primary"
+                  href="/"
+                  data-i18n
+                  data-ko="메인으로 돌아가기 →"
+                  data-en="Back to main →"
+                >
+                  메인으로 돌아가기 →
+                </a>
+                <a
+                  class="btn2"
+                  href="/contact"
+                  data-i18n
+                  data-ko="문의하기 →"
+                  data-en="Contact →"
+                >
+                  문의하기 →
+                </a>
               </div>
             </div>
 
@@ -840,14 +823,17 @@
           class="footer-grid"
           style="grid-template-columns: 1fr 1.2fr; gap: 40px"
         >
-          <!-- Brand -->
           <div class="footer-col">
             <h5>Merrygood</h5>
-            <p style="color: var(--muted); max-width: 360px; line-height: 1.6">
-              Make a love story with your customers. We create meaningful brand
-              and digital experiences.
+            <p
+              style="color: var(--muted); max-width: 360px; line-height: 1.6"
+              data-i18n
+              data-ko="고객과 사랑 이야기를 만드세요.<br />우리는 의미 있는 브랜드와 디지털 경험을 만듭니다."
+              data-en="Make a love story with your customers.<br />We create meaningful brand and digital experiences."
+            >
+              고객과 사랑 이야기를 만드세요.<br />
+              우리는 의미 있는 브랜드와 디지털 경험을 만듭니다.
             </p>
-
             <ul class="footer-links" style="margin-top: 14px">
               <li><a href="/">Home</a></li>
               <li><a href="/about">About</a></li>
@@ -855,27 +841,33 @@
               <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
-
-          <!-- Contact -->
           <div class="footer-col">
             <h5>Contact</h5>
-            <p style="color: var(--muted); margin-bottom: 14px">
-              Have a project in mind?<br />
-              Let’s talk.
+            <p
+              style="color: var(--muted); margin-bottom: 14px"
+              data-i18n
+              data-ko="프로젝트를 구상하고 계신가요?<br />함께 이야기해 봅시다."
+              data-en="Have a project in mind?<br />Let’s talk."
+            >
+              프로젝트를 구상하고 계신가요?<br />
+              함께 이야기해 봅시다.
             </p>
-
-            <!-- ✅ 파란색 유지 -->
-            <a href="/contact" class="footer-btn">Get in touch →</a>
-
+            <a
+              href="/contact"
+              class="footer-btn"
+              data-i18n
+              data-ko="문의하기 →"
+              data-en="Get in touch →"
+            >
+              문의하기 →
+            </a>
             <div style="margin-top: 18px; color: var(--muted); font-size: 14px">
               hello@merrygood.kr<br />
               Seoul · Global
             </div>
           </div>
         </div>
-
         <div class="footer-bottom">
-          <!-- 왼쪽 -->
           <p style="margin: 0">
             &copy; 2026 Merrygood Co., Ltd.
             <span
@@ -886,7 +878,6 @@
               All rights reserved.
             </span>
           </p>
-          <!-- 오른쪽 -->
           <p
             style="
               margin: 0;
@@ -909,7 +900,6 @@
     </footer>
 
     <script>
-      // ===== NAV hide/show on scroll (index와 동일) =====
       let lastScrollTop = 0;
       const navbar = document.querySelector(".navbar");
 
@@ -930,7 +920,6 @@
         lastScrollTop = Math.max(currentScroll, 0);
       });
 
-      // ===== Offcanvas (index와 동일) =====
       const offcanvas = document.getElementById("offcanvas");
       const backdrop = document.getElementById("backdrop");
       const openBtn = document.getElementById("openMenu");
@@ -971,7 +960,6 @@
           closeMenu();
       });
 
-      // 메뉴에서 섹션 이동 시 닫기 + 점프 스크롤 보정
       document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
         a.addEventListener("click", () => {
           closeMenu();
@@ -982,7 +970,7 @@
               navbar.classList.remove("scrolled");
               lastScrollTop = y;
             }
-          }, 60);
+          }, 50);
         });
       });
 
@@ -994,62 +982,55 @@
             navbar.classList.remove("scrolled");
             lastScrollTop = y;
           }
-        }, 60);
+        }, 50);
       });
 
-      // ===== ✅ (추가) 한글/영어 토글 로직만 추가 (기존 기능 영향 없음) =====
-      // - data-i18n 가진 요소만 바꿈
-      // - 원문은 data-ko, 번역은 data-en
-      // - 줄바꿈/strong 유지 위해 innerHTML 사용
-      (function () {
-        const btn = document.getElementById("langToggle");
-        const pill = document.getElementById("langPill");
+      const langToggleBtn = document.getElementById("langToggle");
+      const langPill = document.getElementById("langPill");
 
-        const META = {
-          ko: {
-            title: "메리굿 | 글로벌 노마드 네트워크",
-            desc: "메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다. 정서 케어에서 시작해, 노마드 라이프의 기반을 하나로 잇습니다.",
-          },
-          en: {
-            title: "Merrygood | Global Nomad Network",
-            desc: "Merrygood helps people stay connected even while living a mobile life. Starting with emotional care, we connect the foundations of the nomadic lifestyle.",
-          },
-        };
+      const META = {
+        ko: {
+          title: "About | 메리굿",
+          desc: "메리굿은 이동하는 삶 속에서도 사람들이 연결될 수 있도록 돕는 글로벌 노마드 네트워크입니다.",
+        },
+        en: {
+          title: "About | Merrygood",
+          desc: "Learn about Merrygood, a global nomad network helping travelers and mobile lives stay connected.",
+        },
+      };
 
-        function updateMeta(lang) {
-          const m = META[lang];
-          document.title = m.title;
-          document
-            .querySelector('meta[name="description"]')
-            ?.setAttribute("content", m.desc);
-        }
+      function updateMeta(lang) {
+        const m = META[lang];
+        document.title = m.title;
+        document
+          .querySelector('meta[name="description"]')
+          ?.setAttribute("content", m.desc);
+      }
 
-        function apply(mode) {
-          const m = mode === "ko" ? "ko" : "en";
-          document.documentElement.lang = m;
+      function applyLang(lang) {
+        const mode = lang === "ko" ? "ko" : "en";
+        document.documentElement.lang = mode;
 
-          document.querySelectorAll("[data-i18n]").forEach((el) => {
-            const html = el.getAttribute(m === "ko" ? "data-ko" : "data-en");
-            if (typeof html === "string" && html.length) {
-              el.innerHTML = html;
-            }
-          });
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const html = el.getAttribute(mode === "ko" ? "data-ko" : "data-en");
+          if (typeof html === "string") {
+            el.innerHTML = html;
+          }
+        });
+        
+        if (langPill) langPill.textContent = mode === "ko" ? "KR" : "EN";
+        localStorage.setItem("lang", mode);
 
-          if (pill) pill.textContent = m === "ko" ? "KR" : "EN";
-          localStorage.setItem("lang", m);
+        updateMeta(mode);
+      }
 
-          updateMeta(m);
-        }
+      function toggleLang() {
+        const current = localStorage.getItem("lang") || "ko";
+        applyLang(current === "ko" ? "en" : "ko");
+      }
 
-        function toggle() {
-          const current = localStorage.getItem("lang") || "en";
-          apply(current === "ko" ? "en" : "ko");
-        }
-
-        // 기본: KR
-        apply(localStorage.getItem("lang") || "ko");
-        btn && btn.addEventListener("click", toggle);
-      })();
+      applyLang(localStorage.getItem("lang") || "ko");
+      langToggleBtn?.addEventListener("click", toggleLang);
     </script>
   </body>
 </html>
