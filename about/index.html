@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-HYJ3E7YM7M"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-HYJ3E7YM7M");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | Merrygood</title>
+
+    <meta
+      name="description"
+      content="Learn about Merrygood, a global nomad network helping travelers and mobile lives stay connected."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --nav-h: 80px;
+        --container: 1200px;
+        --text: #111;
+        --muted: #6b7280;
+        --bg: #fff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        --radius-lg: 22px;
+        --body: 15px;
+        --body-lh: 1.75;
+        --body-sm: 13px;
+        --body-sm-lh: 1.6;
+        --hero-body: 17px; /* add */
+        --hero-lh: 1.8; /* add */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Noto Sans KR",
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        word-break: keep-all;
+        font-weight: 400; /* add */
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        width: min(var(--container), calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      /* ===== NAV ===== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0);
+        transition:
+          top 0.7s ease,
+          background-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+      .navbar.hide-navbar {
+        top: calc(var(--nav-h) * -1.35);
+      }
+      .nav-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        position: relative;
+      }
+      .brand {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        z-index: 2;
+      }
+      .brand img {
+        height: var(--nav-h);
+        width: auto;
+      }
+
+      /* ===== LANGUAGE TOGGLE ===== */
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 150px;
+        height: var(--nav-h);
+        width: 96px;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        line-height: 1;
+      }
+      .navbar.scrolled .lang-toggle {
+        color: #111;
+      }
+      .lang-toggle:hover {
+        opacity: 0.82;
+      }
+      .lang-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(0, 0, 0, 0.14);
+        backdrop-filter: blur(6px);
+      }
+      .navbar.scrolled .lang-pill {
+        border-color: rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      /* ===== MENU BUTTON ===== */
+      .menu-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: var(--nav-h);
+        width: 150px;
+        background: #000;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        z-index: 9999;
+        isolation: isolate;
+        mix-blend-mode: normal;
+        line-height: 1;
+      }
+      .menu-btn:hover {
+        background: #333;
+      }
+      .hamburger {
+        display: block;
+        shape-rendering: crispEdges;
+      }
+      .hamburger line {
+        stroke: #fff;
+        stroke-width: 3;
+        stroke-linecap: butt;
+        vector-effect: non-scaling-stroke;
+      }
+      .menu-text {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+
+      /* ===== OFFCANVAS ===== */
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        z-index: 60;
+      }
+      .backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .offcanvas {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(360px, 92vw);
+        background: #000;
+        color: #fff;
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+        z-index: 70;
+        display: flex;
+        flex-direction: column;
+      }
+      .offcanvas.open {
+        transform: translateX(0);
+      }
+
+      .off-header {
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .off-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .off-close {
+        background: transparent;
+        border: 0;
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 6px 10px;
+      }
+
+      .off-body {
+        padding: 18px;
+      }
+      .off-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+      .off-nav a {
+        display: block;
+        padding: 12px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+        transition: background-color 0.2s ease;
+      }
+      .off-nav a:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* ===== ABOUT HERO ===== */
+      .about-hero {
+        min-height: 100vh;
+        background-image: url("/image/map.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+      }
+      .about-hero-inner {
+        position: relative;
+        padding-top: var(--nav-h);
+        width: min(900px, calc(100% - 32px));
+        text-align: center;
+        margin: 0 auto;
+      }
+      .about-hero-inner h1 {
+        font-family: "Lora", serif;
+        color: #fff;
+        font-size: clamp(34px, 5vw, 64px);
+        line-height: 1.12;
+        margin: 0 0 14px;
+        font-weight: 700;
+        letter-spacing: 0.1px;
+      }
+      .about-hero-inner p {
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.86);
+        max-width: 720px;
+        font-size: var(--hero-body);
+        line-height: var(--hero-lh);
+        letter-spacing: -0.01em;
+      }
+
+      /* ===== CONTENT ===== */
+      .section-pad {
+        padding: 70px 0;
+      }
+      .divider {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+        align-items: start;
+      }
+      @media (min-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1.2fr 0.8fr;
+        }
+      }
+      .stack {
+        display: grid;
+        gap: 18px;
+      }
+      .headline {
+        font-size: 28px;
+        line-height: 1.25;
+        margin: 0;
+        font-weight: 850;
+        letter-spacing: -0.2px;
+      }
+      .lede,
+      .note p,
+      .bullets li {
+        font-size: var(--body);
+        line-height: var(--body-lh);
+        letter-spacing: -0.01em;
+      }
+      .lede {
+        margin: 0;
+        color: var(--muted);
+      }
+      .note {
+        background: #f3f4f6;
+        border-radius: var(--radius-lg);
+        padding: 22px;
+      }
+      .note p {
+        margin: 0;
+        color: #111;
+      }
+      .note .muted {
+        color: var(--muted);
+        font-size: var(--body-sm);
+        line-height: var(--body-sm-lh);
+        letter-spacing: 0.02em;
+      }
+      .bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      .bullets li {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
+        color: #111;
+      }
+      .bullets strong {
+        font-weight: 800;
+      }
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 8px;
+      }
+      .btn2 {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+      }
+      .btn2:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+      .btn2.primary {
+        background: #111;
+        color: #fff;
+        border-color: #111;
+      }
+      .btn2.primary:hover {
+        background: #333;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        padding: 56px 0 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+      @media (min-width: 900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr 1fr 1.3fr;
+          align-items: start;
+        }
+      }
+      .footer-col h5 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .footer-links a {
+        color: var(--muted);
+      }
+      .footer-links a:hover {
+        color: var(--text);
+      }
+      .footer-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 0;
+        background: #2563eb;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .footer-btn:hover {
+        filter: brightness(0.95);
+      }
+      .footer-bottom {
+        margin-top: 34px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+      .social {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        padding: 0;
+        margin: 0;
+      }
+      .social a {
+        display: inline-flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        color: var(--text);
+      }
+      .social a:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <nav class="navbar" aria-label="Global Navigation">
+      <div class="container nav-inner">
+        <a class="brand" href="/">
+          <img src="/image/logo.png" alt="Merrygood" />
+        </a>
+
+        <button
+          class="lang-toggle"
+          id="langToggle"
+          type="button"
+          aria-label="Toggle language"
+        >
+          <span class="lang-pill" id="langPill">KR</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          id="openMenu"
+          type="button"
+          aria-controls="offcanvas"
+          aria-expanded="false"
+        >
+          <svg
+            class="hamburger"
+            width="24"
+            height="12"
+            viewBox="0 0 24 12"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <line x1="0" y1="2" x2="24" y2="2"></line>
+            <line x1="0" y1="10" x2="24" y2="10"></line>
+          </svg>
+          <span class="menu-text">Menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <aside class="offcanvas" id="offcanvas" aria-hidden="true">
+      <div class="off-header">
+        <div class="off-title">Menu</div>
+        <button
+          class="off-close"
+          id="closeMenu"
+          type="button"
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>
+      <div class="off-body">
+        <ul class="off-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="#why">Why</a></li>
+          <li><a href="#what">What</a></li>
+          <li><a href="#now">Now</a></li>
+          <li><a href="#vision">Vision</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <header class="about-hero" id="top">
+      <div class="about-hero-inner">
+        <h1>Good lives, in moving worlds.</h1>
+        <p
+          data-i18n
+          data-ko="메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br />
+          정서 케어에서 시작해, 노마드 라이프의 기반을 하나의 앱으로 연결합니다."
+          data-en="Merrygood helps people stay connected even while living on the move.<br />
+          Starting with emotional care, we connect the foundations of a nomadic life through a single app."
+        >
+          메리굿은 이동하는 삶 속에서도 사람이 고립되지 않도록 돕습니다.<br />
+          정서 케어에서 시작해, 노마드 라이프의 기반을 하나의 앱으로 연결합니다.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <!-- WHY -->
+      <section class="section-pad divider" id="why">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="우리가 보는 변화"
+                data-en="The shift we see"
+              >
+                우리가 보는 변화
+              </h2>
+              <p
+                class="lede"
+                data-i18n
+                data-ko="휴머노이드는 이미 노동의 일부가 되었고, 디지털 공간에서는 아바타가 일을 대신합니다. 이동은 점점 필요 없어지고 동시에 더 쉬워집니다. 우리는 이 변화가 만들어내는 고립을 “다음 모빌리티의 문제”로 봅니다."
+                data-en="Humanoids have already become part of the workforce, while avatars take on work in digital spaces. Movement becomes less necessary and easier at the same time. We see the isolation created by this shift as the next problem mobility must address."
+              >
+                휴머노이드는 이미 노동의 일부가 되었고, 디지털 공간에서는
+                아바타가 일을 대신합니다. 이동은 점점 필요 없어지고 동시에 더
+                쉬워집니다. 우리는 이 변화가 만들어내는 고립을 “다음 모빌리티의
+                문제”로 봅니다.
+              </p>
+            </div>
+
+            <div class="note">
+              <p
+                data-i18n
+                data-ko="궁극의 모빌리티는<br /> <strong>움직이지 않아도 되는 상태</strong>입니다."
+                data-en="<strong>Ultimate mobility</strong><br /> is a state where you<br /> <strong>don’t need to move</strong>."
+              >
+                궁극의 모빌리티는<br />
+                <strong>움직이지 않아도 되는 상태</strong>입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT -->
+      <section class="section-pad divider" id="what">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="우리가 만드는 것"
+                data-en="What we’re building"
+              >
+                우리가 만드는 것
+              </h2>
+
+              <p
+                class="lede"
+                data-i18n
+                data-ko="3개월·6개월 단위의 프로젝트가 많아지고, 노마드 라이프가
+                보편화될수록 “살아갈 수 있는 시스템”이 필요해집니다. 메리굿은
+                정서 케어를 기반으로, 삶의 필수 요소를 하나로 묶습니다."
+                data-en="As projects increasingly run in 3–6 month cycles and nomadic living becomes mainstream, we need a system that makes life sustainable. Merrygood bundles the essentials into one—grounded in emotional care."
+              >
+                3개월·6개월 단위의 프로젝트가 많아지고, 노마드 라이프가
+                보편화될수록 “살아갈 수 있는 시스템”이 필요해집니다. 메리굿은
+                정서 케어를 기반으로, 삶의 필수 요소를 하나로 묶습니다.
+              </p>
+
+              <ul class="bullets" aria-label="Platform pillars">
+                <li
+                  data-i18n
+                  data-ko="<strong>Care</strong> — 노마드·여행자·출장자의 마음을 돌보는 정서 케어"
+                  data-en="<strong>Care</strong> — Emotional support for nomads, travelers, and business guests"
+                >
+                  <strong>Care</strong> — 노마드·여행자·출장자의 마음을 돌보는
+                  정서 케어
+                </li>
+                <li
+                  data-i18n
+                  data-ko="<strong>Work</strong> — 생존을 위한 긱잡(Gig Job) 연결과 기여 저장 기반의 재호출형 프로젝트 연결"
+                  data-en="<strong>Work</strong> — Connecting gig work for everyday sustainability and enabling recallable project matching based on saved contributions"
+                >
+                  <strong>Work</strong> — 생존을 위한 긱잡(Gig Job) 연결과 기여
+                  저장 기반의 재호출형 프로젝트 연결
+                </li>
+                <li
+                  data-i18n
+                  data-ko="<strong>Move &amp; Stay</strong> — 이동과 숙박을 한 흐름으로 해결"
+                  data-en="<strong>Move &amp; Stay</strong> — Seamless travel and accommodation in one flow"
+                >
+                  <strong>Move &amp; Stay</strong> — 이동과 숙박을 한 흐름으로
+                  해결
+                </li>
+              </ul>
+            </div>
+
+            <div class="note">
+              <p class="muted" style="margin: 0 0 10px">One app, everywhere.</p>
+              <p
+                style="margin: 0"
+                data-i18n
+                data-ko="메리굿 앱 하나로<br /> 어디서든 <strong>마음을 돌보고</strong><br /> <strong>일</strong>하고<br /> <strong>머무를 수 있는</strong> 삶을 지향합니다."
+                data-en="With a single Merrygood app<br /> you can <strong>care for your mind</strong><br /> <strong>work</strong><br /> and <strong>find a place to stay</strong>."
+              >
+                메리굿 앱 하나로<br />
+                어디서든 <strong>마음을 돌보고</strong><br />
+                <strong>일</strong>하고<br />
+                <strong>머무를 수 있는</strong> 삶을 지향합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOW -->
+      <section class="section-pad divider" id="now">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2
+                class="headline"
+                data-i18n
+                data-ko="지금, 첫 단추"
+                data-en="Now, the first step"
+              >
+                지금, 첫 단추
+              </h2>
+              <p
+                class="lede"
+                data-i18n
+                data-ko="우리는 첫 단계로 호텔에서 정서 케어를 시작했습니다. 낯선 공간에서 하루를 마무리하는 사람들의 마음을 돌보는 일부터, 메리굿의 노마드 플랫폼은 다음으로 확장됩니다."
+                data-en="We began with emotional care in hotels. By caring for people as they end their day in unfamiliar spaces, Merrygood’s nomad platform moves toward its next phase."
+              >
+                우리는 첫 단계로 호텔에서 정서 케어를 시작했습니다. 낯선
+                공간에서 하루를 마무리하는 사람들의 마음을 돌보는 일부터,
+                메리굿의 노마드 플랫폼은 다음으로 확장됩니다.
+              </p>
+            </div>
+
+            <div class="note">
+              <p
+                style="margin: 0"
+                data-i18n
+                data-ko="작은 시작이지만 방향은 분명합니다.<br />
+                정서 케어 → 생활 기반(일/이동/숙박) →
+                <strong>노마드 네트워크</strong>"
+                data-en="It’s a small start, but the direction is clear.<br />
+                Emotional care → Life foundations (work/move/stay) →
+                <strong>Nomad network</strong>"
+              >
+                작은 시작이지만 방향은 분명합니다.<br />
+                정서 케어 → 생활 기반(일/이동/숙박) →
+                <strong>노마드 네트워크</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISION -->
+      <section class="section-pad divider" id="vision">
+        <div class="container">
+          <div class="about-grid">
+            <div class="stack">
+              <h2 class="headline" data-i18n data-ko="다음 단계" data-en="Next">
+                다음 단계
+              </h2>
+
+              <p
+                class="lede"
+                data-i18n
+                data-ko="메리굿은 노마드, 여행자, 출장자들이 어디에 있든 덜 고립되고 더
+                연결될 수 있도록 돕는
+                <strong>글로벌 노마드 네트워크</strong>로 나아갑니다."
+                data-en="Merrygood is moving toward a <strong>global nomad network</strong>—helping nomads, travelers, and business guests feel less isolated and more connected wherever they are."
+              >
+                메리굿은 노마드, 여행자, 출장자들이 어디에 있든 덜 고립되고 더
+                연결될 수 있도록 돕는
+                <strong>글로벌 노마드 네트워크</strong>로 나아갑니다.
+              </p>
+
+              <div class="cta-row">
+                <a
+                  class="btn2 primary"
+                  href="/"
+                  data-i18n
+                  data-ko="메인으로 돌아가기 →"
+                  data-en="Back to main →"
+                >
+                  메인으로 돌아가기 →
+                </a>
+                <a
+                  class="btn2"
+                  href="/contact"
+                  data-i18n
+                  data-ko="문의하기 →"
+                  data-en="Contact →"
+                >
+                  문의하기 →
+                </a>
+              </div>
+            </div>
+
+            <div class="note">
+              <p
+                style="margin: 0"
+                data-i18n
+                data-ko="<strong>Merrygood</strong>은 이름처럼<br />
+                즐겁고 좋은 기업이 되고 싶습니다."
+                data-en="Like our name, <strong>Merrygood</strong><br />aims to be a joyful and genuinely good company."
+              >
+                <strong>Merrygood</strong>은 이름처럼<br />
+                즐겁고 좋은 기업이 되고 싶습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div
+          class="footer-grid"
+          style="grid-template-columns: 1fr 1.2fr; gap: 40px"
+        >
+          <div class="footer-col">
+            <h5>Merrygood</h5>
+            <p
+              style="color: var(--muted); max-width: 360px; line-height: 1.6"
+              data-i18n
+              data-ko="고객과 사랑 이야기를 만드세요.<br />우리는 의미 있는 브랜드와 디지털 경험을 만듭니다."
+              data-en="Make a love story with your customers.<br />We create meaningful brand and digital experiences."
+            >
+              고객과 사랑 이야기를 만드세요.<br />
+              우리는 의미 있는 브랜드와 디지털 경험을 만듭니다.
+            </p>
+            <ul class="footer-links" style="margin-top: 14px">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/#service">Service</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <p
+              style="color: var(--muted); margin-bottom: 14px"
+              data-i18n
+              data-ko="프로젝트를 구상하고 계신가요?<br />함께 이야기해 봅시다."
+              data-en="Have a project in mind?<br />Let’s talk."
+            >
+              프로젝트를 구상하고 계신가요?<br />
+              함께 이야기해 봅시다.
+            </p>
+            <a
+              href="/contact"
+              class="footer-btn"
+              data-i18n
+              data-ko="문의하기 →"
+              data-en="Get in touch →"
+            >
+              문의하기 →
+            </a>
+            <div style="margin-top: 18px; color: var(--muted); font-size: 14px">
+              hello@merrygood.kr<br />
+              Seoul · Global
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p style="margin: 0">
+            &copy; 2026 Merrygood Co., Ltd.
+            <span
+              data-i18n
+              data-ko="All rights reserved."
+              data-en="All rights reserved."
+            >
+              All rights reserved.
+            </span>
+          </p>
+          <p
+            style="
+              margin: 0;
+              font-size: 13px;
+              line-height: 1.6;
+              text-align: right;
+              max-width: 720px;
+            "
+            data-i18n
+            data-ko="사업자등록번호 : 494-81-03292 | 주식회사 메리굿 | 대표 : 이경원 | 전화 : 070-8080-4224 <br /> 주소 : 서울특별시 강서구 마곡중앙6로 11, 314-14호(마곡동, 보타닉파크타워3)"
+            data-en="Biz reg. no : 494-81-03292 | Merrygood Co., Ltd | CEO : Kyoung-Won Lee | Phone : 070-8080-4224 <br /> Address : 314-14-ho, 11 Magokjungang 6-ro, Gangseo-gu, Seoul, 07801, Republic of Korea (Botanic Park Tower 3)"
+          >
+            사업자등록번호 : 494-81-03292 | 주식회사 메리굿 | 대표 : 이경원 |
+            전화 : 070-8080-4224 <br />
+            주소 : 서울특별시 강서구 마곡중앙6로 11, 314-14호(마곡동,
+            보타닉파크타워3)
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let lastScrollTop = 0;
+      const navbar = document.querySelector(".navbar");
+
+      window.addEventListener("scroll", () => {
+        const currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+          navbar.classList.add("hide-navbar");
+          navbar.classList.remove("scrolled");
+        } else if (currentScroll < lastScrollTop && currentScroll > 50) {
+          navbar.classList.remove("hide-navbar");
+          navbar.classList.add("scrolled");
+        } else if (currentScroll <= 50) {
+          navbar.classList.remove("scrolled");
+        }
+
+        lastScrollTop = Math.max(currentScroll, 0);
+      });
+
+      const offcanvas = document.getElementById("offcanvas");
+      const backdrop = document.getElementById("backdrop");
+      const openBtn = document.getElementById("openMenu");
+      const closeBtn = document.getElementById("closeMenu");
+
+      function openMenu() {
+        offcanvas.classList.add("open");
+        offcanvas.setAttribute("aria-hidden", "false");
+        openBtn.setAttribute("aria-expanded", "true");
+
+        backdrop.hidden = false;
+        requestAnimationFrame(() => backdrop.classList.add("open"));
+
+        document.documentElement.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMenu() {
+        offcanvas.classList.remove("open");
+        offcanvas.setAttribute("aria-hidden", "true");
+        openBtn.setAttribute("aria-expanded", "false");
+
+        backdrop.classList.remove("open");
+        setTimeout(() => {
+          backdrop.hidden = true;
+        }, 250);
+
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+      }
+
+      openBtn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      backdrop.addEventListener("click", closeMenu);
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && offcanvas.classList.contains("open"))
+          closeMenu();
+      });
+
+      document.querySelectorAll('.off-nav a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", () => {
+          closeMenu();
+          setTimeout(() => {
+            const y = window.pageYOffset || document.documentElement.scrollTop;
+            if (y > 50) {
+              navbar.classList.add("hide-navbar");
+              navbar.classList.remove("scrolled");
+              lastScrollTop = y;
+            }
+          }, 50);
+        });
+      });
+
+      window.addEventListener("hashchange", () => {
+        setTimeout(() => {
+          const y = window.pageYOffset || document.documentElement.scrollTop;
+          if (y > 50) {
+            navbar.classList.add("hide-navbar");
+            navbar.classList.remove("scrolled");
+            lastScrollTop = y;
+          }
+        }, 50);
+      });
+
+      const langToggleBtn = document.getElementById("langToggle");
+      const langPill = document.getElementById("langPill");
+
+      const META = {
+        ko: {
+          title: "About | 메리굿",
+          desc: "메리굿은 이동하는 삶 속에서도 사람들이 연결될 수 있도록 돕는 글로벌 노마드 네트워크입니다.",
+        },
+        en: {
+          title: "About | Merrygood",
+          desc: "Learn about Merrygood, a global nomad network helping travelers and mobile lives stay connected.",
+        },
+      };
+
+      function updateMeta(lang) {
+        const m = META[lang];
+        document.title = m.title;
+        document
+          .querySelector('meta[name="description"]')
+          ?.setAttribute("content", m.desc);
+      }
+
+      function applyLang(lang) {
+        const mode = lang === "ko" ? "ko" : "en";
+        document.documentElement.lang = mode;
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const html = el.getAttribute(mode === "ko" ? "data-ko" : "data-en");
+          if (typeof html === "string") {
+            el.innerHTML = html;
+          }
+        });
+
+        if (langPill) langPill.textContent = mode === "ko" ? "KR" : "EN";
+        localStorage.setItem("lang", mode);
+
+        updateMeta(mode);
+      }
+
+      function toggleLang() {
+        const current = localStorage.getItem("lang") || "ko";
+        applyLang(current === "ko" ? "en" : "ko");
+      }
+
+      applyLang(localStorage.getItem("lang") || "ko");
+      langToggleBtn?.addEventListener("click", toggleLang);
+    </script>
+  </body>
+</html>
